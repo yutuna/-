@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>今天约吗？</title>
+  <meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="full-screen" content="yes"/>
+<meta name="screen-orientation" content="portrait"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="360-fullscreen" content="true"/>
+  <meta name="Keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+  <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+
+  <script src="__PUBLIC__/js/valid.js"></script>
+  <script src="__PUBLIC__/lib/sweet-alert.js"></script>
+  <link rel="stylesheet" href="__PUBLIC__/lib/sweet-alert.css">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="__PUBLIC__/js/js.js"></script>
+
+</head>
+<body >
+  <div class="bmform">
+    <form method="post" action="__URL__/bmsub">
+      <div class="item_group clearfix">
+        <label>姓名</label>
+        <input type="text" name="bbname" id="bbname"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>年龄</label>
+        <input type="text" name="bbage" id="bbage"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>性别</label>
+        <input type="text" name="bmsex" id="bmsex"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>联系电话</label>
+        <input type="text" name="mobile" id="mobile" />
+      </div>
+      <div class="item_group clearfix">
+        <label>紧急联系人电话</label>
+        <input type="text" name="backContact" id="backContact" />
+      </div>
+      <div class="item_group clearfix">
+        <label>职业</label>
+        <input type="text" name="creer" id="creer"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>星座</label>
+        <input type="text" name="xingzuo" id="xingzuo"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>学历</label>
+        <input type="text" name="study" id="study"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>年薪</label>
+        <input type="text" name="salary" id="salary"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>自我描述</label>
+        <textarea name="selfdesc" id="selfdesc"></textarea>
+      </div>
+      <div class="item_group clearfix">
+        <label>择偶标准</label>
+        <textarea name="zeoubz" id="zeoubz"></textarea>
+      </div>
+      <div class="cszp">
+        <div class="sccon">
+          <a class="btn_y" onclick="chooseImg()">选择照片</a>
+        </div>
+        （照片要求3-5张，大小不超过2M,我们保证您的信息不会泄露）
+      </div>
+      <div class="pic_con" style="display:none;">
+          <a class="btn_y" onclick="clearImg()">清空图片</a>
+      </div>
+      <input type="submit" style="display:none;" id="bmsub"/>
+      <a class="btn" onclick="subbm();">提交</a>
+      
+      <!-- <a class="btn" onclick="ajaxUp()" pic="" id="upid">上传</a> -->
+    </form>
+  </div>
+  <!-- <{$jsskd}> -->
+  <!-- <{$tt}> -->
+  <script type="text/javascript">
+  function ajaxForm(){
+    $.ajax( {    
+        url:'__URL__/bmsub',// 跳转到 action    
+        data:{    
+            realname  :$('#bbname').val(),    
+            age  :$('#bbage').val(),    
+            mobile  :$('#mobile').val(),   
+            creer  :$('#creer').val(),  
+            xingzuo  :$('#xingzuo').val(),  
+            study  :$('#study').val(),  
+            salary  :$('#salary').val(),   
+            bmsex  :$('#bmsex').val(),     
+            zeoubz  :$('#zeoubz').val(),   
+            selfdesc  :$('#selfdesc').val(),
+            backContact  :$('#backContact').val()
+        },    
+        type:'post',    
+        cache:false,    
+        dataType:'json',    
+        success:function(data) { 
+          if(data.isSuccess){
+            synUptoWeixin(localIds_All);
+          }else{
+            alert(data.msg);
+          }
+         },    
+         error : function() {      
+               alert("报名提交异常！");    
+         }    
+    });
+  }
+  function addPic(url){
+    $('.pic_con').append('<input type="hidden" value="'+url+'" class="J_img">');
+  }
+  function clearImg(){
+    $('.pic_con').html('<a class="btn_y" onclick="clearImg()">清空</a>');
+    localIds_All = [];
+  }
+  function ajaxUp(serverId,last){
+    $.ajax( {    
+        url:'__URL__/upImg',// 跳转到 action    
+        data:{    
+            serverId : serverId,//图片在微信服务器的ID 
+        },    
+        type:'post',    
+        cache:false,    
+        dataType:'json',    
+        success:function(data) { 
+          if(data.isSuccess){
+            if(last){
+              alert('报名成功!');
+              setTimeout(function(){
+                window.location.href="__URL__/detail?id=<{$_SESSION['id']}>";
+              },3000);
+            }
+          }else{
+            alert(data.msg);
+            window.location.href="__URL__/baoming";
+          } 
+         },    
+         error : function() {      
+          alert("图片上传异常！");    
+         }    
+    });
+  }
+  // var upno = 0;
+  var synUptoWeixin = function(localIds){
+    var localId = localIds.pop();
+    wx.uploadImage({
+        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+        isShowProgressTips: 1, // 默认为1，显示进度提示
+        success: function (res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            if(localIds.length>=1){
+              ajaxUp(serverId);
+            }else{
+              ajaxUp(serverId,1);
+            }
+            if(localIds.length>0){
+              synUptoWeixin(localIds);
+            }else{
+
+            }
+        }
+    });
+  }
+  var localIds_All = [];
+  function chooseImg(){
+    if(localIds_All.length>=5){
+      alert('最多5张');
+      return;
+    }
+    wx.chooseImage({
+        success: function (res) {
+            if(res.localIds.length > 5-localIds_All.length){
+              alert('总数不能超过5张');
+              return;
+            }
+            var localIds = res.localIds; // 
+            if(localIds_All.length==0){
+              $('.pic_con').show();
+            }
+            var html = "";
+            for(var j = 0;j<localIds.length;j++){
+              html += '<img src="'+localIds[j]+'"/>';
+              localIds_All.push(localIds[j]);
+            }
+            $('.pic_con').append(html);
+        }
+    });
+  }
+  function subbm(){
+    if(!valid()){
+      return false;
+    }
+    ajaxForm();
+  }
+    wx.config({
+    debug: false,//false true
+  appId: '<{$jsskd.appId}>',
+  timestamp:'<{$jsskd.timestamp}>',
+  nonceStr: '<{$jsskd.nonceStr}>',
+  signature: '<{$jsskd.signature}>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'hideMenuItems',
+      'showMenuItems',
+      'hideAllNonBaseMenuItem',
+      'showAllNonBaseMenuItem',
+      'translateVoice',
+      'startRecord',
+      'stopRecord',
+      'onRecordEnd',
+      'playVoice',
+      'pauseVoice',
+      'stopVoice',
+      'uploadVoice',
+      'downloadVoice',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage',
+      'getNetworkType',
+      'openLocation',
+      'getLocation',
+      'hideOptionMenu',
+      'showOptionMenu',
+      'closeWindow',
+      'scanQRCode',
+      'chooseWXPay',
+      'openProductSpecificView',
+      'addCard',
+      'chooseCard',
+      'openCard'
+    ]
+  });
+
+// alert('2');
+  wx.ready(function () {
+    // 在这里调用 API
+     wx.showOptionMenu();
+
+     var link = 'http://games.hzlianhai.com/xiangqin/index.php';
+     var imgUrl = 'http://games.hzlianhai.com/xiangqin/Public/images/hb.jpg';
+
+       wx.onMenuShareAppMessage({
+          title: '今天约吗？', // 分享标题
+          desc: '你今天约了吗？',
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () {
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     //alert("喵喵感谢您！success");
+          //     //location.reload();
+          //     window.location.href="http://qiushi.ncnwt.com/images/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () {
+              // 用户取消分享后执行的回调函数
+              //alert("喵喵感谢您！cancel");
+              // location.reload();
+          }
+      });
+
+       wx.onMenuShareTimeline({
+          title: '今天约吗？', // 分享标题
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () { 
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     window.location.href="http://games.hzlianhai.com/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+              // location.reload();
+          }
+      });
+
+
+  });
+
+
+// alert('3');
+  </script>  
+</body>
+</html>

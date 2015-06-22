@@ -1,0 +1,433 @@
+﻿body {
+    font-size: 14px;
+    display: block;
+    font-family: Microsoft YaHei,Arial;
+    padding: 0px;
+    margin: 0px;
+    color: #222;
+}
+
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 0;
+    text-decoration: none;
+}
+
+#wrapper {
+    width: 100%;
+}
+
+#banner {
+    width: 100%;
+}
+
+    #banner .main_image {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
+    }
+
+        #banner .main_image ul {
+            width: auto;
+            height: 180px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #banner .main_image li {
+            float: left;
+            width: 100%;
+            height: 180px;
+        }
+
+            #banner .main_image li span {
+                display: block;
+                width: 100%;
+                height: 180px;
+            }
+
+            #banner .main_image li a {
+                display: block;
+                width: 100%;
+                height: 180px;
+            }
+
+            #banner .main_image li img {
+                width: 100%;
+                height: 100%;
+            }
+
+    #banner .flicking_con {
+        width: 100%;
+        top: 150px;
+        position: absolute;
+        text-align: center;
+    }
+
+        #banner .flicking_con .flicking_inner {
+            position: relative;
+            z-index: 999;
+            display: inline-block;
+            height: 21px;
+        }
+        /* 121126 */
+        #banner .flicking_con a {
+            float: left;
+            width: 21px;
+            height: 21px;
+            margin: 0;
+            padding: 0;
+            background: url('../images/banner/icon/btn_main_img.png') 0 0 no-repeat;
+            display: block;
+            text-indent: -1000px;
+        }
+
+            #banner .flicking_con a.on {
+                background-position: 0 -21px;
+            }
+
+#btn_prev, #btn_next {
+    z-index: 11111;
+    position: absolute;
+    width: 73px!important;
+    height: 74px!important;
+    top: 50%;
+    margin-top: -37px;
+    display: none;
+}
+/*#btn_prev{background:url(/Content/images/banner/hover_left.png) no-repeat left top;left:100px;}
+#btn_next{background:url(/Content/images/banner/hover_right.png) no-repeat right top;right:100px;}*/
+
+#game {
+    width: 100%;
+}
+
+#wallpaper {
+    width: 100%;
+}
+
+.list-title {
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #808080;
+    color: #fff;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#333333,endColorStr=#808080); /*IE 6 7 8*/
+    background: -ms-linear-gradient(top,#333,#808080); /* IE 10 */
+    background: -moz-linear-gradient(top,#333,#808080); /*火狐*/
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#333), to(#808080)); /*谷歌*/
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#808080)); /* Safari 4-5, Chrome 1-9*/
+    background: -webkit-linear-gradient(top, #333, #808080); /*Safari5.1 Chrome 10+*/
+    background: -o-linear-gradient(top, #333, #808080); /*Opera 11.10+*/
+}
+
+.main-list {
+}
+
+    .main-list li {
+        width: auto;
+        padding: 10px;
+        border-bottom: 1px solid #bbb;
+        FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#cdcdcd,endColorStr=#eeeee); /*IE 6 7 8*/
+        background: -ms-linear-gradient(top,#cdcdcd,#eee); /* IE 10 */
+        background: -moz-linear-gradient(top,#cdcdcd,#eee); /*火狐*/
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#cdcdcd), to(#eee)); /*谷歌*/
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cdcdcd), to(#eee)); /* Safari 4-5, Chrome 1-9*/
+        background: -webkit-linear-gradient(top, #cdcdcd, #eee); /*Safari5.1 Chrome 10+*/
+        background: -o-linear-gradient(top, #cdcdcd, #eee); /*Opera 11.10+*/
+    }
+
+        .main-list li .imgbox {
+            float: left;
+            width: 60px;
+            height: 60px;
+        }
+
+            .main-list li .imgbox img {
+                width: 100%;
+                height: 100%;
+                vertical-align: middle;
+            }
+
+        .main-list li .infobox {
+            margin-left: 68px;
+            margin-top: 4px;
+            height: 55px;
+        }
+
+        .main-list li .infobox_building {
+            height: 60px;
+            margin-left: 68px;
+            line-height: 60px;
+        }
+
+.wallpaper-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+}
+
+    .wallpaper-list li {
+        width: 33.3333%;
+        border: none;
+        float: left;
+        text-align: center;
+    }
+
+        .wallpaper-list li img {
+            border: none;
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+            /*border:1px solid #555;*/
+        }
+
+#gameinfo {
+    width: 100%;
+    background-color: #eee;
+}
+
+    #gameinfo .game_icon {
+        float: left;
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 80px;
+        height: 80px;
+    }
+
+        #gameinfo .game_icon img {
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+    #gameinfo .game_other {
+        margin-left: 90px;
+        height: 80px;
+    }
+
+        #gameinfo .game_other .game_txtinfo {
+            margin-right: 90px;
+            height: 80px;
+        }
+
+        #gameinfo .game_other .game_playbutton {
+            float: right;
+            margin: 5px;
+            width: 80px;
+            height: 80px;
+        }
+
+            #gameinfo .game_other .game_playbutton a {
+                display: block;
+                text-align: center;
+                height: 100%;
+                width: 100%;
+                line-height: 80px;
+                font-size: 18px;
+                font-weight: bold;
+                color:#fff;
+                border:1px solid #0E9B1C;
+                FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#0A7413,endColorStr=#19B510); /*IE 6 7 8*/
+                background: -ms-linear-gradient(top,#0A7413,#19B510); /* IE 10 */
+                background: -moz-linear-gradient(top,#0A7413,#19B510); /*火狐*/
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#0A7413), to(#19B510)); /*谷歌*/
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0A7413), to(#19B510)); /* Safari 4-5, Chrome 1-9*/
+                background: -webkit-linear-gradient(top, #0A7413, #19B510); /*Safari5.1 Chrome 10+*/
+                background: -o-linear-gradient(top, #0A7413, #19B510); /*Opera 11.10+*/
+            }
+
+#ranking {
+    width: 100%;
+}
+
+.ranking-list {
+}
+
+    .ranking-list li {
+        width: auto;
+        padding: 10px;
+        border-bottom: 1px solid #bbb;
+        FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#cdcdcd,endColorStr=#eeeee); /*IE 6 7 8*/
+        background: -ms-linear-gradient(top,#cdcdcd,#eee); /* IE 10 */
+        background: -moz-linear-gradient(top,#cdcdcd,#eee); /*火狐*/
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#cdcdcd), to(#eee)); /*谷歌*/
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cdcdcd), to(#eee)); /* Safari 4-5, Chrome 1-9*/
+        background: -webkit-linear-gradient(top, #cdcdcd, #eee); /*Safari5.1 Chrome 10+*/
+        background: -o-linear-gradient(top, #cdcdcd, #eee); /*Opera 11.10+*/
+    }
+
+        .ranking-list li .rank {
+            float: left;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .ranking-list li .headimg {
+            float: left;
+            height: 50px;
+            width: 50px;
+            margin-left: 10px;
+        }
+
+            .ranking-list li .headimg img {
+                width: 100%;
+                height: 100%;
+                vertical-align: middle;
+                border-radius:5px;
+            }
+
+        .ranking-list li .otherinfo {
+            float: left;
+            margin-top: 6px;
+            margin-left: 10px;
+        }
+
+.agreement-title {
+    padding:10px;
+    margin:10px 0;
+    font-size:24px;
+    text-align:left;
+    color:#7171C6;
+}
+
+.agreement-content {
+
+}
+
+    .agreement-content .agreement-content-title {
+        padding:0 10px;
+        margin:8px 0;
+        font-size:16px;
+        color:#7171C6;
+    }
+
+    .agreement-content .agreement-content-section {
+        padding:5px 20px;
+        line-height:150%;
+    }
+
+#errormsg {
+     width: 100%;
+     height:100%;
+}
+
+    #errormsg p {
+        text-align:center;
+        font-size:18px;
+        color:#333;
+        line-height:150%;
+        margin-top:10px;
+    }
+
+    #errormsg #button-box {
+        margin-top:10px;
+        text-align:center;
+    }
+
+        #errormsg #button-box a {
+            text-align:center;
+            vertical-align:middle;
+            margin:10px auto;
+            display:block;
+            width:60%;
+            background-color:#0557a9;
+            color:#fff;
+            font-size:20px;
+            padding:10px;
+            border-radius:5px;
+            font-weight:bold;
+        }
+
+        #errormsg #button-box p {
+            font-size:12px;
+            color:#999;
+        }
+
+    #errormsg #bottom-bg {
+        position:absolute;
+        bottom:0px;
+        background-image: url('../images/subscribe_bg.png');
+        background-position-x:center;
+        background-position-y:bottom;
+        background-size:100%;
+        background-repeat:no-repeat;
+        height:100%;
+        width:100%;
+        z-index:-1;
+    }
+.color1 {
+    color: #0E9B1C;
+}
+
+.color2 {
+    color: #BEAD17;
+}
+
+.color3 {
+    color: #bbb;
+}
+
+.color7 {
+    color: #777;
+}
+
+.f_12 {
+    font-size: 12px;
+}
+
+.f_14 {
+    font-size: 14px;
+}
+
+.f_16 {
+    font-size: 16px;
+}
+
+.f_18 {
+    font-size: 18px;
+}
+
+.f_20 {
+    font-size: 20px;
+}
+
+.f_b {
+    font-weight: bold;
+}
+
+.textleft {
+    text-align: left;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+.textright {
+    text-align: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.texthidden {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    word-wrap: break-word;
+}

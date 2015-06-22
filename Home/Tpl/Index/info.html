@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>今天约吗？</title>
+  <meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="full-screen" content="yes"/>
+<meta name="screen-orientation" content="portrait"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="360-fullscreen" content="true"/>
+  <meta name="Keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+  <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+
+  <script src="__PUBLIC__/js/valid.js"></script>
+  <script src="__PUBLIC__/lib/sweet-alert.js"></script>
+  <link rel="stylesheet" href="__PUBLIC__/lib/sweet-alert.css">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="__PUBLIC__/js/js.js"></script>
+
+</head>
+<body >
+  <div class="bmform">
+    <form method="post" action="__URL__/bmsub">
+      <div class="item_group clearfix">
+        <label>姓名</label>
+        <input type="text" name="bbname" id="bbname"/>
+      </div>
+      <div class="item_group clearfix">
+        <label>联系电话</label>
+        <input type="text" name="mobile" id="mobile" />
+      </div>
+      <div class="item_group clearfix">
+        <label>紧急联系人电话</label>
+        <input type="text" name="backContact" id="backContact" />
+      </div>
+      <input type="submit" style="display:none;" id="bmsub"/>
+      <a class="btn" onclick="subbm();">提交</a>
+      
+      <!-- <a class="btn" onclick="ajaxUp()" pic="" id="upid">上传</a> -->
+    </form>
+  </div>
+  <!-- <{$jsskd}> -->
+  <!-- <{$tt}> -->
+  <script type="text/javascript">
+  $(function(){
+    alert("您未报名，请先填写基本信息");
+  });
+  function ajaxForm(){
+    $.ajax( {    
+        url:'__URL__/subinfo',// 跳转到 action    
+        data:{    
+            realname  :$('#bbname').val(),  
+            mobile  :$('#mobile').val(),    
+            backContact  :$('#backContact').val(),   
+        },    
+        type:'post',    
+        cache:false,    
+        dataType:'json',    
+        success:function(data) { 
+          if(data.isSuccess){
+            alert("信息提交成功！您可以进行选择了~");
+            history.go(-1);
+            // yongbao('__URL__/yongbao',<{$_GET["id"]}>);
+          }else{
+            alert(data.msg);
+          }
+         },    
+         error : function() {      
+               alert("报名提交异常！");    
+         }    
+    });
+  }
+  function subbm(){
+    if(!validinfo()){
+      return false;
+    }
+    ajaxForm();
+  }
+  function validinfo(){
+    if(!$('#bbname').val()||!$('#mobile').val()||!$('#backContact').val()){
+        alert('请填写完整！');
+        return false;
+      }
+      if(!checkMobile($('#mobile').val())){
+        alert('手机号码格式错误！');
+        return false;
+      }
+      if(!checkMobile($('#backContact').val())){
+        alert('手机号码格式错误！');
+        return false;
+      }
+      return true;
+  }
+
+function checkMobile(text){
+  // alert(text);
+  var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if(!myreg.test(text)){
+            // alert('请输入有效的手机号码！');
+            // document.form1.mobile.focus();
+            return false;
+    }else{
+      return true;
+    }
+}
+    wx.config({
+    debug: false,//false true
+  appId: '<{$jsskd.appId}>',
+  timestamp:'<{$jsskd.timestamp}>',
+  nonceStr: '<{$jsskd.nonceStr}>',
+  signature: '<{$jsskd.signature}>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'hideMenuItems',
+      'showMenuItems',
+      'hideAllNonBaseMenuItem',
+      'showAllNonBaseMenuItem',
+      'translateVoice',
+      'startRecord',
+      'stopRecord',
+      'onRecordEnd',
+      'playVoice',
+      'pauseVoice',
+      'stopVoice',
+      'uploadVoice',
+      'downloadVoice',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage',
+      'getNetworkType',
+      'openLocation',
+      'getLocation',
+      'hideOptionMenu',
+      'showOptionMenu',
+      'closeWindow',
+      'scanQRCode',
+      'chooseWXPay',
+      'openProductSpecificView',
+      'addCard',
+      'chooseCard',
+      'openCard'
+    ]
+  });
+
+// alert('2');
+  wx.ready(function () {
+    // 在这里调用 API
+     wx.showOptionMenu();
+
+     var link = 'http://games.hzlianhai.com/xiangqin/index.php';
+     var imgUrl = 'http://games.hzlianhai.com/haoyangmao/Public/images/1.jpg';
+
+       wx.onMenuShareAppMessage({
+          title: 'WIFI996', // 分享标题
+          desc: 'WIFI996',
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () {
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     //alert("喵喵感谢您！success");
+          //     //location.reload();
+          //     window.location.href="http://qiushi.ncnwt.com/images/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () {
+              // 用户取消分享后执行的回调函数
+              //alert("喵喵感谢您！cancel");
+              // location.reload();
+          }
+      });
+
+       wx.onMenuShareTimeline({
+          title: 'WIFI996', // 分享标题
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () { 
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     window.location.href="http://games.hzlianhai.com/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+              // location.reload();
+          }
+      });
+
+
+  });
+
+
+// alert('3');
+  </script>  
+</body>
+</html>

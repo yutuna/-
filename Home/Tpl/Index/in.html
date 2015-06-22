@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>寻找最萌宝贝</title>
+  <meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="full-screen" content="yes"/>
+<meta name="screen-orientation" content="portrait"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="360-fullscreen" content="true"/>
+  <meta name="Keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+  <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+  <script src="__PUBLIC__/lib/sweet-alert.js"></script>
+  <link rel="stylesheet" href="__PUBLIC__/lib/sweet-alert.css">
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+</head>
+<body >
+  <div id="hdxz" onclick="tohome()">
+    <div class="hdxz">
+      <h2>活动细则</h2><h3>
+      参赛对象：</h3><p>
+3-10岁少儿，不限男女</p><h3>
+
+参赛规则：</h3>
+<p>
+1、上传3-5张照片参赛，其中必须有1张全身照，1张大头照，1张亲子照。 <br>
+2、参赛选手需关注“东美文化”微信公众号，发送关键字“武林萌主”或者点击自定义菜单“武林萌主”进行报名。<br>
+3、比赛期间如果您取消关注“东美文化”微信公众号，将失去参赛资格。<br>
+4、领奖时，需提供户口本或其他相关身份证明文件。
+</p><h3>
+
+投票方式：</h3><p>
+1、所有微信用户均可进行投票，每个微信号每天只能投一票。<br>
+2、投票用户需关注“东美文化”微信公众号，点击自定义菜单“武林萌主”进入投票页面，进行投票。<br>
+3、如果您取消关注东美文化公众号，投票将自动扣除。
+</p>
+<h3>
+
+比赛时间：</h3><p>
+报名投票：5月20日-6月2日<br>
+公布结果：6月3日<br>
+领奖时间：6月6日
+</p><h3>
+
+
+领奖方式：</h3><p>
+现场领奖。（如因自身原因不能前来领奖，视为自动放弃获奖资格，由排名在其后一位的宝贝入围获奖。）</p>
+<h3>
+
+注意事项：</h3><p>
+1、主办方一旦发现某位用户票数增长异常或经他人举报，经核实后确认存在刷票行为，第一次采取警告并减去刷票票数，第二次将取消参赛资格。<br>
+2、一旦发现资料照片非本人或是网络图片将取消参与资格。
+</p>
+
+    </div>
+    <a class="btn" onclick="tohome()">返回首页</a>
+  </div>
+  <div id="jpsz" onclick="tohome()">
+    <div class="hdxz">
+      <h2>奖品设置</h2>
+      <h3>冠军大礼包  1名 价值19610元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡一份</td>
+            <td>价值2600元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值3688元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影一部</td>
+            <td>价值8888元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR神奇语言卡一套</td>
+            <td>价值298元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一套</td>
+            <td>价值156元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>亚军大礼包  1名  价值9766元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值1200元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值2288元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影抵用券</td>
+            <td>价值2000元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR神奇语言卡一套</td>
+            <td>价值298元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>季军大礼包  1名  价值6704元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值500元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值1068元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影抵用券</td>
+            <td>价值1000元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一套</td>
+            <td>价值156元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>入围奖礼包 10名（不含冠亚季军）  价值539元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值500元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一册</td>
+            <td>价值39元</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>另，排名在前30位的宝贝，将有机会受邀参加东美培训少儿模特课程体验。</p>
+    </div>
+    <a class="btn" onclick="tohome()">返回首页</a>
+  </div>
+  <div id="home">
+    <div class="hometop">
+      <img src="__PUBLIC__/images/1.jpg">
+      <img src="__PUBLIC__/images/2.jpg">
+      <img src="__PUBLIC__/images/5.jpg">
+    </div>
+    <div class="homemid">
+      <a class="btn" href="__URL__/baoming">我要报名</a>
+      <div class="btn2 clearfix">
+        <div class="item">
+          <a class="btn" onclick="tolayer('hdxz')">活动细则</a>
+        </div>
+        <div class="item">
+          <a class="btn" onclick="tolayer('jpsz')">奖品设置</a>
+        </div>
+      </div>
+      <div class="tongji clearfix">
+        <div class="item">参与人数:<span id="cyrs"><{$bmcount}></span></div>
+        <div class="item">投票累计:<span id="tplj"><{$toucount}></span></div>
+        <div class="item">访问人数:<span id="fwl"><{$ucount}></span></div>
+      </div>
+    </div>
+    <div class="tiaozhuan clearfix">
+      <div class="left">跳到第 <input type="text" id="tzpage"/> 页</div>
+      <a class="tz" onclick="tzpage()">确定</a>
+    </div>  
+    <div class="homebottom">
+
+      <ul class="clearfix">
+        <volist name="list" id="vo">
+        <li>
+          <div class="img" onclick="window.location.href='__URL__/detail?id=<{$vo.id}>'"><img src="http://games.hzlianhai.com/haoyangmao/<{$vo.thumb}>"></div>
+          <div class="detail clearfix">
+            <span>No.<{$vo.id}></span>
+            <span style="max-width:80px;max-height:25px;"><{$vo.bbname}></span>
+            <span id="pnum_<{$vo.id}>"><{$vo.vote}>票</span>
+          </div>
+        </li>
+        </volist>
+        
+      </ul>
+      <div>
+        <{$page}>
+      </div>
+    </div>
+  </div>
+    
+  <!-- <{$jsskd}> -->
+  <!-- <{$tt}> -->
+  <script type="text/javascript">
+  function tohome(){
+    $('#jpsz').hide();
+    $('#hdxz').hide();
+    $('#home').show();
+  }
+  function tolayer(id){
+    $('#'+id).show();
+    $('#home').hide();
+  }
+  function tzpage(){
+    var topage = $('#tzpage').val();
+    window.location.href="__URL__/index?p="+topage;
+  }
+    // console.log(<{$jsskd}>);
+// alert('1');
+    wx.config({
+    debug: false,//false true
+  appId: '<{$jsskd.appId}>',
+  timestamp:'<{$jsskd.timestamp}>',
+  nonceStr: '<{$jsskd.nonceStr}>',
+  signature: '<{$jsskd.signature}>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'hideMenuItems',
+      'showMenuItems',
+      'hideAllNonBaseMenuItem',
+      'showAllNonBaseMenuItem',
+      'translateVoice',
+      'startRecord',
+      'stopRecord',
+      'onRecordEnd',
+      'playVoice',
+      'pauseVoice',
+      'stopVoice',
+      'uploadVoice',
+      'downloadVoice',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage',
+      'getNetworkType',
+      'openLocation',
+      'getLocation',
+      'hideOptionMenu',
+      'showOptionMenu',
+      'closeWindow',
+      'scanQRCode',
+      'chooseWXPay',
+      'openProductSpecificView',
+      'addCard',
+      'chooseCard',
+      'openCard'
+    ]
+  });
+
+// alert('2');
+  wx.ready(function () {
+    // 在这里调用 API
+     wx.showOptionMenu();
+
+     var link = 'http://games.hzlianhai.com/haoyangmao/index.php/Index/in';
+     var imgUrl = 'http://games.hzlianhai.com/haoyangmao/Public/images/1.jpg';
+
+       wx.onMenuShareAppMessage({
+          title: '我参加了武林萌主大赛，请为我投上宝贵一票，助我一统萌宝江湖！', // 分享标题
+          desc: '寻找最萌宝贝',
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () {
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     //alert("喵喵感谢您！success");
+          //     //location.reload();
+          //     window.location.href="http://qiushi.ncnwt.com/images/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () {
+              // 用户取消分享后执行的回调函数
+              //alert("喵喵感谢您！cancel");
+              // location.reload();
+          }
+      });
+
+       wx.onMenuShareTimeline({
+          title: '我参加了武林萌主大赛，请为我投上宝贵一票，助我一统萌宝江湖！', // 分享标题
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () { 
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     window.location.href="http://games.hzlianhai.com/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+              // location.reload();
+          }
+      });
+
+
+  });
+
+// alert('3');
+  </script>  
+</body>
+</html>

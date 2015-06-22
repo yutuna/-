@@ -1,0 +1,83 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+<script>
+				$(function(){
+				
+				//提交表单
+				$('img.search').click(function(){
+					$('form[name="searchUserForm"]').submit();
+				});
+				
+				$('#exportData').click(function(){
+					
+					var username='blank';
+					var userphone='blank';
+					if($("#username").val()!=''){
+						username =$("#username").val();
+					}
+					
+					if($("#userphone").val()!=''){
+						userphone =$("#userphone").val();
+					}
+
+					window.location.href = "__APP__/User/exportUserData/username/"+username+"/userphone/"+userphone;
+				});
+			});
+		</script>		
+	<div class="diywap_right">
+
+		<div class="well well-sm">用户记录查询</div>
+					
+					<form  name="searchUserForm" action="__APP__/User/searchUser"  method="get" >
+		<div>
+		
+			用户姓名:<input type='text' name='username' id="username" value="<{$_GET['username']}>"/>
+			用户手机: <input type='text' name='userphone' id="userphone" value="<{$_GET['userphone']}>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+			<div class="btn btn-primary btn-lg" id="exportData">导出数据</div>
+		</div>
+		</form>
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>序号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>地区</th>
+				<th>职业</th>
+				<th>手机</th>
+				<th>是否分享</th>
+			</tr>
+			<volist name='data' id='vo'>
+				<tr class="active" style="font-size:12px">
+					<td><{$i}></td>
+					<td><{$vo.username}></td>
+					<td><{$vo.agerange}></td>
+					<td><{$vo.sex}></td>
+					<td><{$vo.address}></td>
+					<td><{$vo.job}></td>
+					<td><{$vo.userphone}></td>
+					<td><{$vo.is_share}></td>
+				</tr>
+			</volist>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><{$page}></div>
+
+			</div>
+
+		
+
+</div>
+
+</body>
+
+</html>

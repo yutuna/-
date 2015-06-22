@@ -1,0 +1,158 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+<div id=share style="display: none">                        
+	<img width=100% src="http://g.ezcx.net/boss/share.png"
+                                style="position: fixed; z-index: 9999; top: 0; left: 0; display: "
+                                ontouchstart="document.getElementById('share').style.display='none';" />
+</div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>龙抬头薅羊毛</title>
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Rank/Css/index.css?t=92534">
+    <script type="text/javascript" src="__PUBLIC__/Rank/Js/jquery-1.8.2.min.js"></script>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".game_txtinfo").each(function (i) {
+                var $p = $("p", $(this)).eq(0);
+                var divH = $(this).height() - $(this).children("#game_txtinfo_name").height() - $(this).children("#game_txtinfo_popularity").height();
+                while ($p.outerHeight() > divH) {
+                    $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+                };
+            });
+        });
+    </script>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  wx.config({
+	debug: false,//false true
+	appId: '<?php echo ($jsskd["appId"]); ?>',
+	timestamp:'<?php echo ($jsskd["timestamp"]); ?>',
+	nonceStr: '<?php echo ($jsskd["nonceStr"]); ?>',
+	signature: '<?php echo ($jsskd["signature"]); ?>',
+	jsApiList: [
+'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage'
+	  ]	  
+  });
+</script>
+<script>
+/**
+wx.ready(function () {
+	var imgUrl = "http://qiushi.ncnwt.com/images/2048/Public/Images/2048.png";
+        var lineLink = "http://qiushi.ncnwt.com/images/2048";
+        var descContent = '我在金辰之光游戏最高得到了'+<?php echo ($mydata['score']); ?>+'分，好激动啊，看你的！';
+        var shareTitle = '我在金辰之光游戏最高得到了'+<?php echo ($mydata['score']); ?>+'分，好激动啊，看你的！';
+        var shareFriendTitle = '金辰之光游戏;
+        var appid = '';
+
+wx.checkJsApi({
+      jsApiList: [
+        'getNetworkType',
+        'previewImage'
+      ],
+      success: function (res) {
+        alert(JSON.stringify(res));
+      }
+    });
+    
+
+  // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+    wx.onMenuShareTimeline({
+      title: shareTitle,
+      link: lineLink,
+      imgUrl: imgUrl,
+      trigger: function (res) {
+        //alert('用户点击分享到朋友圈');
+      }
+    }); 
+	
+	wx.onMenuShareAppMessage({
+      title: shareFriendTitle,
+      desc: descContent,
+      link: lineLink,
+      imgUrl:imgUrl,
+      trigger: function (res) {
+        //alert('用户点击发送给朋友');
+      }
+    });
+
+  
+});
+wx.error(function (res) {
+  alert(res.errMsg);
+});
+*/
+</script>
+
+</head>
+<body>
+
+	<div id="gameinfo">
+        <div class="game_icon">
+            <img src="__PUBLIC__/Rank/Img/1.png" />
+        </div>
+        <div class="game_other">
+            <div class="game_playbutton">
+                <a href="__ROOT__">开始游戏</a>
+            </div>
+            <div class="game_txtinfo">
+                <span id="game_txtinfo_name" class="f_16 textleft texthidden" style="white-space: nowrap; margin-top: 3px; display: inline-block"></span>
+                <span id="game_txtinfo_popularity" class="f_14 color7 textleft texthidden" style="display: block;">
+                        <span class="color1 f_16">龙抬头薅羊毛</span>
+                </span>
+<!--
+                <a href="http://mp.weixin.qq.com/s?__biz=MzAwMDEzNjIyNg==&mid=203210200&idx=1&sn=27362547b0b112efda4839393444208d#rd" class="f_16 textleft color1 texthidden" style="margin-top: 5px; line-height: 13px;">马上关注天翼 </a>
+-->
+<br>
+<a href="http://mp.weixin.qq.com/s?__biz=MjM5MjE2MjY1Mw==&mid=210781764&idx=1&sn=18b26de81f5a73b59bf5b59fc91107d6#rd" style="font-family:arial;color:green;font-size:8px;"><h1>关注新疆电信</h1></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+    <div id="ranking">
+
+        <h4 class="list-title">排行榜&nbsp;&nbsp;
+                <span class="color3 f_12">您排第<span class="f_14 color1"><?php echo ($mydata['rank']); ?></span>名，得<span class="f_14 color1"><?php echo ($mydata['score']); ?></span>分。</span>
+
+        </h4>
+        <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><ul class="ranking-list">
+                    <li>
+                        <div class="rank color1 f_20 f_b">
+                            <span><?php echo ($i); ?></span>
+                        </div>
+                            <div class="headimg">
+                                    <img src="<?php echo ($vo["avatar"]); ?>" />
+
+                            </div>
+
+                        <div class="otherinfo">
+                                <span class="f_16 textleft" style="display: block;"><?php echo ($vo["nickname"]); ?></span>
+
+                            <div class="f_12 color7 textleft">
+                                得分：<span class="f_16 color1"><?php echo ($vo["score"]); ?></span>&nbsp;&nbsp;分
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                    
+
+            </ul><?php endforeach; endif; else: echo "" ;endif; ?>
+        <!--
+            <a href="/BCLGame/Home/GameRankList?id=1">
+                <p style="padding:10px;text-align:center;background-color:#cdcdcd;" class="color1">更多排行</p>
+            </a>      
+        -->
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">图片配置</div>
+
+
+<script>
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+<!-- 威虎小钟修改：2014-10-16 -->
+<form class="form-horizontal" action='__APP__/Config/updateSysConfig' method="post" name="myForm"/>
+			
+			
+			<table class="table table-hover table-bordered">
+			<tr>
+				<th>参数说明</th>
+				<th>操作</th>
+			</tr>
+			
+			<tr class="active">
+				<td>
+					设置调查页面顶部banner1
+				</td>
+				<td>
+					<input type='text' name='bannerpic1' class='cfg_input' value="<{$cfg_survey_banner_1}>"/>
+				</td>
+			</tr>
+			
+			<tr class="active">
+				<td>
+					设置调查页面顶部banner2
+				</td>
+				<td>
+					<input type='text' name='bannerpic2' class='cfg_input' value="<{$cfg_survey_banner_2}>"/>
+				</td>
+			</tr>
+			
+			<tr class="active">
+				<td>
+					设置调查页面顶部banner3
+				</td>
+				<td>
+					<input type='text' name='bannerpic3' class='cfg_input' value="<{$cfg_survey_banner_3}>"/>
+				</td>
+			</tr>
+			
+			<tr class="active">
+				<td>
+					设置调查页面顶部banner4
+				</td>
+				<td>
+					<input type='text' name='bannerpic4' class='cfg_input' value="<{$cfg_survey_banner_4}>"/>
+				</td>
+			</tr>
+			
+			<tr class="active">
+				<td>
+					设置调查页面顶部banner5
+				</td>
+				<td>
+					<input type='text' name='bannerpic5' class='cfg_input' value="<{$cfg_survey_banner_5}>"/>
+				</td>
+			</tr>
+			
+			<tr class="active">
+				<td>
+					设置调查页面顶部banner6
+				</td>
+				<td>
+					<input type='text' name='bannerpic6' class='cfg_input' value="<{$cfg_survey_banner_6}>"/>
+				</td>
+			</tr>
+		
+		</table>
+		
+			</br>
+			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+			</form>
+
+			</div>
+
+			</div>
+	</div>
+
+</body>
+
+</html>

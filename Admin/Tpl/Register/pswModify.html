@@ -1,0 +1,90 @@
+<include file="./Admin/Tpl/Index/header.html"/>	<!--加载头部代码-->
+
+<include file="./Admin/Tpl/Index/left.html"/>	<!--加载左侧代码-->
+
+
+		<div class="diywap_right">
+
+		<div class="well well-sm">修改密码</div>
+		<script>
+		function checkSave() {
+			var $password = $('input[name="password"]');
+			var $newpassword = $('input[name="newpassword"]');
+			var $repassword = $('input[name="repassword"]');
+			if (!$password.val()) {
+				alert("请输入旧密码！");
+				$password.focus();
+				return false;
+			} else if (!$newpassword.val()) {
+				alert("请输入新密码！");
+				$newpassword.focus();
+				return false;
+			} else if (!$repassword.val()) {
+				alert("请输入确认新密码！");
+				$repassword.focus();
+				return false;
+			} else if ($newpassword.val() != $repassword.val()) {
+				alert("确认新密码与新密码不一致！");
+				return false;
+			}
+			
+			$('form[name="myForm"]').submit();
+		}
+		</script>
+		<form class="form-horizontal"  action="__URL__/doPswModify" method="post" name="myForm"/>
+
+			<div class="form-group">
+
+			 <label for="pwd" class="col-sm-2 control-label">旧密码:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="password" name="password" value="" class="form-control"  >
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="pwd" class="col-sm-2 control-label">新密码:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="password" name="newpassword" value="" class="form-control" >
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="pwd" class="col-sm-2 control-label">确认新密码:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="password" name="repassword" value="" class="form-control" >
+
+				 </div>
+
+			</div>
+
+			<button type="button" class="btn btn-primary btn-lg" id="save" onclick="checkSave();" >保 存</button>
+
+		</form>
+
+		<p></p>
+
+		
+
+		</div>
+
+
+
+
+
+</body>
+
+</html>
+
+

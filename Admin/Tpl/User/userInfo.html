@@ -1,0 +1,78 @@
+<include file="./Admin/Tpl/Index/header.html"/>		<!--加载头部代码-->
+<include file="./Admin/Tpl/Index/left.html"/>		<!--加载左侧代码-->
+
+
+<script>
+				$(function(){
+				
+				//提交表单
+				$('img.search').click(function(){
+					$('form[name="searchUserForm"]').submit();
+				});
+				
+				$('#exportData').click(function(){
+					
+					var username='blank';
+					var userphone='blank';
+					if($("#username").val()!=''){
+						username =$("#username").val();
+					}
+					
+					if($("#userphone").val()!=''){
+						userphone =$("#userphone").val();
+					}
+
+					window.location.href = "__APP__/User/exportUserData/username/"+username+"/userphone/"+userphone;
+				});
+			});
+		</script>		
+	<div class="diywap_right">
+
+		<div class="well well-sm">用户记录查询</div>
+					
+					<form  name="searchUserForm" action="__APP__/User/searchUser"  method="get" >
+		<div>
+		
+			微信昵称:<input type='text' name='username' id="username" value="<{$_GET['username']}>"/>
+			地区: <input type='text' name='userphone' id="userphone" value="<{$_GET['userphone']}>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+			<!--
+			<div class="btn btn-primary btn-lg" id="exportData">导出数据</div>
+			-->
+		</div>
+		</form>
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>序号</th>
+				<th>昵称</th>
+				<th>手机</th>
+				<th>性别</th>
+				<th>地区</th>
+			</tr>
+			<volist name='data' id='vo'>
+				<tr class="active" style="font-size:12px">
+					<td><{$i}></td>
+					<td><{$vo.nickname}></td>
+					<td><{$vo.tel}></td>
+					<td><{$vo.sex}></td>
+					<td><{$vo.location}></td>
+				</tr>
+			</volist>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><{$page}></div>
+
+			</div>
+
+		
+
+</div>
+
+</body>
+
+</html>
