@@ -10,6 +10,103 @@ class IndexAction extends CommonAction {
     public function index(){
 		$this->userlist();
 	}
+    public function savejiemu(){
+        $name = $_POST['name'];
+        $Jiemu = M("Jiemu");
+        $data['create_time'] = date('Y-m-d H:i:s',NOW_TIME);
+        $data['name'] = $name;
+        $data['shenhe'] = 1;
+
+        if($_POST['id']){
+            $map['id'] = $_POST['id'];
+            $re_save = $Jiemu->where($map)->save($data);
+        }else{
+            $re_save = $Jiemu->add($data);
+        }
+        
+        if($re_save){
+            $ajax_return['isSuccess'] = true;
+            $ajax_return['id'] = $re_save;
+            $ajax_return['name'] = $name;
+            $ajax_return['create_time'] = $data['create_time'];
+            $this->ajaxReturn($ajax_return,'JSON');
+        }else{
+            $ajax_return['msg'] = "出错";
+            $this->ajaxReturn($ajax_return,'JSON');
+        }
+    }
+    public function savejiabin(){
+        $Jiabin = M("Jiabin");
+        $data['realname'] = $_POST['realname'];
+        $data['belongid'] = $_POST['jmid'];
+        $data['mobile'] = $_POST['mobile'];
+        $data['age'] = $_POST['age'];
+        $data['bmsex'] = $_POST['bmsex'];
+        $data['creer'] = $_POST['creer'];
+        $data['xingzuo'] = $_POST['xingzuo'];
+        $data['study'] = $_POST['study'];
+        $data['salary'] = $_POST['salary'];
+        $data['selfdesc'] = $_POST['selfdesc'];
+        $data['zeoubz'] = $_POST['zeoubz'];
+
+        if($_POST['id']){
+            $map['id'] = $_POST['id'];
+            $re_save = $Jiabin->where($map)->save($data);
+        }else{
+            $data['shenhe'] = 1;
+            $data['bmtime'] = date('Y-m-d H:i:s',NOW_TIME);
+            $re_save = $Jiabin->add($data);
+        }
+        
+        if($re_save){
+            $ajax_return['isSuccess'] = true;
+            $this->ajaxReturn($ajax_return,'JSON');
+        }else{
+            $ajax_return['msg'] = "出错";
+            $this->ajaxReturn($ajax_return,'JSON');
+        }
+    }
+    public function jiemulist(){
+        //显示后台首页
+        $Jiemu = M("Jiemu");
+        if(!$_GET['p']){
+            $_GET['p'] = 1;
+        }
+        $map['isdelete'] = array('neq',1);
+        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        $list = $Jiemu->where($map)->order('create_time DESC')->page($_GET['p'].',20')->select();
+        $this->assign('list',$list);// 赋值数据集
+        import("ORG.Util.Page");// 导入分页类
+        $count      = $Jiemu->count();// 查询满足要求的总记录数
+
+        $Page       = new Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page->setConfig('theme','<li><span>%totalRow%条记录</span></li> <li class="prev">%upPage%</li> <li>%linkPage%</li> <li class="prev">%downPage%</li> %end%');
+        $show       = $Page->show();// 分页显示输出
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display("jiemulist");
+    }
+    public function jiabinlist(){
+        //显示后台首页
+        $jmid = $_GET['jmid'];
+        $Jiabin = M("Jiabin");
+        if(!$_GET['p']){
+            $_GET['p'] = 1;
+        }
+        $map['belongid'] = $jmid;
+        $map['isdelete'] = array('neq',1);
+        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        $list = $Jiabin->where($map)->order('bmtime DESC')->page($_GET['p'].',20')->select();
+        $this->assign('list',$list);// 赋值数据集
+        import("ORG.Util.Page");// 导入分页类
+        $count      = $Jiabin->where($map)->count();// 查询满足要求的总记录数
+
+        $Page       = new Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page->setConfig('theme','<li><span>%totalRow%条记录</span></li> <li class="prev">%upPage%</li> <li>%linkPage%</li> <li class="prev">%downPage%</li> %end%');
+        $show       = $Page->show();// 分页显示输出
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('jmid',$jmid);
+        $this->display();
+    }
     public function userlist(){
         //显示后台首页
         $User = M("User");
@@ -48,12 +145,61 @@ class IndexAction extends CommonAction {
             $this->ajaxReturn($data,'JSON');
         }
     }
+    public function jmshenhe(){
+        $Jiemu = M("Jiemu");
+        $id = $_POST["id"];
+        $which = $_POST["which"];
+        $data["shenhe"] = $which;
+        $data["id"] = $id;
+        $re = $Jiemu->save($data);
+        if($re){
+            $data['isSuccess'] = true;
+            if($which == "1"){
+                $data['which'] = "已审核";
+            }else{
+                $data['which'] = "未审核";
+            }
+            $this->ajaxReturn($data,'JSON');
+        }else{
+            $data['msg'] = "出错了";
+            $this->ajaxReturn($data,'JSON');
+        }
+    }
+    public function jbshenhe(){
+        $Jiabin = M("Jiabin");
+        $id = $_POST["id"];
+        $which = $_POST["which"];
+        $data["shenhe"] = $which;
+        $data["id"] = $id;
+        $re = $Jiabin->save($data);
+        if($re){
+            $data['isSuccess'] = true;
+            if($which == "1"){
+                $data['which'] = "已审核";
+            }else{
+                $data['which'] = "未审核";
+            }
+            $this->ajaxReturn($data,'JSON');
+        }else{
+            $data['msg'] = "出错了";
+            $this->ajaxReturn($data,'JSON');
+        }
+    }
     public function photo(){
         $id = $_GET["id"];
         $Pics = M("Pics");
         $map['uid']  = $id;
         $re = $Pics->where($map)->select();
         $this->assign('list',$re);
+        $this->display();
+    }
+    public function jiabinphoto(){
+        $id = $_GET["id"];
+        $Jbpic = M("Jbpic");
+        $map['uid']  = $id;
+        $re = $Jbpic->where($map)->order('pid DESC')->limit(5)->select();
+        $this->assign('list',$re);
+        $this->assign('jbid',$id);
         $this->display();
     }
     public function wholike(){
@@ -72,13 +218,28 @@ class IndexAction extends CommonAction {
         $this->assign('data',$re);
         $this->display();
     }
-    public function deletebm(){
+    public function deletejiemu(){
         $id = $_POST["id"];
-        $User = M("User");
-        // $map['id']  = $id;
-        $data["id"] = $id;
-        $data["bm"] = "0";
-        $re = $User->save($data);
+        $Jiemu = M("Jiemu");
+        $data['id']  = $id;
+        // $map["id"] = $id;
+        $data["isdelete"] = 1;
+        $re = $Jiemu->save($data);
+        if($re){
+            $data['isSuccess'] = true;
+            $this->ajaxReturn($data,'JSON');
+        }else{
+            $data['msg'] = "出错了";
+            $this->ajaxReturn($data,'JSON');
+        }
+    }
+    public function deletejb(){
+        $id = $_POST["id"];
+        $Jiabin = M("Jiabin");
+        $data['id']  = $id;
+        // $map["id"] = $id;
+        $data["isdelete"] = 1;
+        $re = $Jiabin->save($data);
         if($re){
             $data['isSuccess'] = true;
             $this->ajaxReturn($data,'JSON');
@@ -326,12 +487,12 @@ class IndexAction extends CommonAction {
     public function upload() {
         if (!empty($_FILES)) {
             //如果有文件上传 上传附件
-            $this->_upload();
+            $this->_upload($_POST['sbjbid']);
         }
     }
 
     // 文件上传
-    protected function _upload() {
+    protected function _upload($jbid) {
         import('@.ORG.UploadFile');
         //导入上传类
         $upload = new UploadFile();
@@ -366,21 +527,28 @@ class IndexAction extends CommonAction {
             // Image::water($uploadList[0]['savepath'] . 'm_' . $uploadList[0]['savename'], __ROOT__.'/App/Tpl/Public/Images/logo.png');
             $_POST['image'] = $uploadList[0]['savename'];
         }
-        $model  = M('Img');
+        $model  = M('Jbpic');
         //保存当前数据对象
-        $data['photo']          = $_POST['image'];
-        $_SESSION['image'] = $_POST['image'];
+        $data['url']          = $_POST['image'];
+        $data['uid']          = $jbid;
+        // $_SESSION['image'] = $_POST['image'];
         // $data['product_model']  = $_POST['product_model'];
         // $data['stocks']         = $_POST['stocks'];
         // $data['update_time']    = date('Y-m-d H:i:s',NOW_TIME);
         $list   = $model->add($data);
+
+        $Jiabin = M("Jiabin");
+        $conmap["id"] = $jbid;
+        $conda["thumb"] = $_POST['image'];
+        $listt   = $Jiabin->where($conmap)->save($conda);
+        
         if ($list !== false) {
             // $this->success('上传图片成功！');
             // echo("ss");
             echo("<script type=\"text/javascript\">parent.callback('".$_POST['image']."');</script>");
         } else {
-            $this->error('上传图片失败!');
+            // $this->error('上传图片失败!');
+            echo("<script type=\"text/javascript\">parent.errer();</script>");
         }
     }
 }
-

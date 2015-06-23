@@ -66,13 +66,13 @@
           <ul class="nav nav-list">
 
             
-            <li class="active">
+            <li>
               <a href="__URL__/userlist">
                 <i class="icon-shopping-cart"></i>
                 <span class="menu-text"> 报名 </span>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="__URL__/jiemulist">
                 <i class="icon-list-alt"></i>
                 <span class="menu-text"> 节目列表 </span>
@@ -103,7 +103,7 @@
             <ul class="breadcrumb">
               <li>
                 <i class="icon-home home-icon"></i>
-                <a href="#">用户报名列表</a>
+                <a href="#">嘉宾列表</a>
               </li>
             </ul><!-- .breadcrumb -->
 
@@ -138,14 +138,13 @@
                       <div class="tab-content">
                         <div class="table-responsive">
                           <div class="dataTables_wrapper">
-                            
+                            <input type="hidden" value="<{$jmid}>" id="jiemuid">
                             <table id="J_Table" class="table table-striped table-bordered table-hover J_Table">
                               <thead>
                                 <tr>
-                                  <th>用户名字</th>
+                                  <th>嘉宾名字</th>
                                   <th>照片查看</th>
                                   <th>用户手机</th>
-                                  <th>紧急联系人手机</th>
                                   <th>年龄</th>
                                   <th>性别</th>
                                   <th>职业</th>
@@ -154,8 +153,7 @@
                                   <th>年薪</th>
                                   <th>自我描述</th>
                                   <th>择偶标准</th>
-                                  <th>报名时间</th>
-                                  <th>谁喜欢他</th>
+                                  <th>添加时间</th>
                                   <th>状态</th>
                                   <th>操作</th>
                                 </tr>
@@ -165,9 +163,8 @@
                                 <volist name="list" id="vo">
                                 <tr>
                                   <td><{$vo.realname}></td>
-                                  <td><a href="__URL__/photo?id=<{$vo.id}>">查看</a></td>
-                                  <td><{$vo.mobile}></td>
-                                  <td><{$vo.backContact}></td>
+                                  <td><a href="__URL__/jiabinphoto?id=<{$vo.id}>">查看</a></td>
+                                  <td><{$vo.mobile}> </td>
                                   <td><{$vo.age}></td>
                                   <td><{$vo.bmsex}></td>
                                   <td><{$vo.creer}></td>
@@ -177,7 +174,6 @@
                                   <td><{$vo.selfdesc}></td>
                                   <td><{$vo.zeoubz}></td>
                                   <td><{$vo.bmtime}></td>
-                                  <td><a href="__URL__/wholike?id=<{$vo.id}>">查看<{$vo.supporter}></a></td>
                                   <!-- <td><{$vo.login_time}></td> -->
                                   <!-- <td><{$vo.status}></td> -->
                                   <td class="shenhezt" id="shenhezt_<{$vo.id}>"><{$vo.shenhe}></td>
@@ -192,10 +188,64 @@
                                       <button class="btn btn-xs btn-danger J_DeleteTr" dataid="<{$vo.id}>">
                                         <i class="icon-trash bigger-120"> 删除 </i>
                                       </button>
+                                      <!-- <button class="btn btn-xs btn-warning" dataid="<{$vo.id}>" onclick="modifyJiemu(this);">
+                                        <i class="icon-edit bigger-120">修改</i>
+                                      </button> -->
                                     </div>
                                   </td>
                                 </tr>
                                 </volist>
+                                <style type="text/css">
+                                  #newjiemu_row div{
+                                    margin-top: 10px;
+                                  }
+                                  #newjiemu_row div label{
+                                    display: block;
+                                    width: 100px;
+                                    float: left;
+                                  }
+                                </style>
+                                <tr id="newjiemu_row" style="display:none;">
+                                  <td colspan = "14">
+                                    <div style="width:100%;">
+                                      <div><label>姓名</label><input type="text" id="newname" ></div>
+                                      <div><label>手机号</label><input type="text" id="newmobile" ></div>
+                                      <div><label>年龄</label><input type="text" id="newage" ></div>
+                                      <div><label>性别</label><select><option id="newsex" value="女">女</option><option value="男">男</option></select></div>
+                                      <div><label>职业</label><input type="text" id="newcreer" ></div>
+                                      <div><label>星座</label><input type="text" id="newxingzuo" ></div>
+                                      <div><label>学历</label><input type="text" id="newstudy" ></div>
+                                      <div><label>年薪</label><input type="text" id="newsalary" ></div>
+                                      <div><label>自我描述</label><input type="text" id="newselfdesc" ></div>
+                                      <div><label>择偶标准</label><input type="text" id="newzeoubz" ></div>
+                                    </div>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                      <button class="btn btn-xs btn-info" onclick="saveJiemu();">
+                                        <i class="icon-check bigger-120"> 保存 </i>
+                                      </button>
+                                      <button class="btn btn-xs btn-warning" onclick="makeHide('newjiemu_row');">
+                                        <i class="icon-check-empty bigger-120"> 取消 </i>
+                                      </button>
+                                    </div>
+                                  </td>
+                                  <!-- <td>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                      <button class="btn btn-xs btn-info" onclick="saveJiemu();">
+                                        <i class="icon-check bigger-120"> 保存 </i>
+                                      </button>
+                                      <button class="btn btn-xs btn-warning" onclick="makeHide('newjiemu_row');">
+                                        <i class="icon-check-empty bigger-120"> 取消 </i>
+                                      </button>
+                                    </div>
+                                  </td> -->
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <button class="btn btn-xs btn-primary" onclick="makeShow('newjiemu_row');">
+                                        <i class="bigger-120"> 添加嘉宾 </i>
+                                      </button>
+                                  </td>
+                                </tr>
                               </tbody>
                             </table>
                             <div class="row">
@@ -309,6 +359,126 @@
 
 
       <script type="text/javascript">
+      function valid(){
+        return true;
+      }
+      function makeShow(id){
+        $("#"+id).show();
+      }
+      function makeHide(id){
+        $("#"+id).hide();
+      }
+      function modifyJiemu(obj){
+        var ob = $(obj);
+        var tr = ob.parent().parent();
+        var input = tr.find('input');
+        // var name = input.val();
+        // console.log(input);
+        if(ob.find('i').text()=="修改"){
+          input.removeAttr("disabled");
+          // input.val("111");
+          ob.find('i').text("保存");
+        }else{
+          // input.attr("disabled","disabled");
+          // ob.find('i').text("修改");
+          saveJiemu(ob.attr("dataid"),obj);
+        }
+      }
+      function valid () {
+        if(!$('#newname').val()||!$('#newmobile').val()||!$('#newage').val()||!$('#newsex').val()||!$('#newcreer').val()||!$('#newxingzuo').val()||!$('#newstudy').val()||!$('#newsalary').val()||!$('#newselfdesc').val()||!$('#newzeoubz').val()){
+          alert('报名表单不完整，请填写完整！');
+          return false;
+        }
+        if(isNaN($('#newage').val())){
+            alert('年龄必须为数字'); 
+            return false;
+          }
+        if(!checkMobile($('#newmobile').val())){
+          alert('手机号码格式错误！');
+          return false;
+        }
+        if($('#newselfdesc').val().length>200){
+          alert('自我描述不大于200字！')
+          return false;
+        }
+        if($('#newzeoubz').val().length>100){
+          alert('择偶标准不大于100字！')
+          return false;
+        }
+        return true;
+      }
+      function checkMobile(text){
+        // alert(text);
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+          if(!myreg.test(text)){
+                  // alert('请输入有效的手机号码！');
+                  // document.form1.mobile.focus();
+                  return false;
+          }else{
+            return true;
+          }
+      }
+      function saveJiemu(id,obj){
+        if(id){//修改
+          var name = $("#modi1_"+id).val();
+          var newmobile = $("#modi2_"+id).val();
+          var newage = $("#modi3_"+id).val();
+          var newsex = $("#modi4_"+id).val();
+          var newcreer = $("#modi5_"+id).val();
+          var newxingzuo = $("#modi6_"+id).val();
+          var newstudy = $("#modi7_"+id).val();
+          var newsalary = $("#modi8_"+id).val();
+          var newselfdesc = $("#modi9_"+id).val();
+          var newzeoubz = $("#modi10_"+id).val();
+          if(!valid()){
+            // alert("填写不完整");
+            return false;
+          }
+        }else{//新增
+          var name = $("#newname").val();
+          var newmobile = $("#newmobile").val();
+          var newage = $("#newage").val();
+          var newsex = $("#newsex").val();
+          var newcreer = $("#newcreer").val();
+          var newxingzuo = $("#newxingzuo").val();
+          var newstudy = $("#newstudy").val();
+          var newsalary = $("#newsalary").val();
+          var newselfdesc = $("#newselfdesc").val();
+          var newzeoubz = $("#newzeoubz").val();
+          if(!valid()){
+            // alert("填写不完整");
+            return false;
+          }
+        }
+        //
+          
+         $.ajax({
+            url:"__URL__/savejiabin",
+            type:"post",
+            data:{
+              jmid:$("#jiemuid").val(),
+              realname:name,
+              id:id,
+              mobile:newmobile,
+              age:newage,
+              bmsex:newsex,
+              creer:newcreer,
+              xingzuo:newxingzuo,
+              study:newstudy,
+              salary:newsalary,
+              selfdesc:newselfdesc,
+              zeoubz:newzeoubz,
+            },
+            success:function(data){
+              if(data.isSuccess){
+                alert("操作成功");
+                location.reload();
+              }else{
+                alert("出错了");
+              }
+            }
+          });
+      }
       function shenhe(id,un){
         var t = $("#shenhezt_"+id).text();
         var which;
@@ -324,7 +494,7 @@
           }
         }
         $.ajax( {    
-            url:'__URL__/shenhe',// 跳转到 action    
+            url:'__URL__/jbshenhe',// 跳转到 action    
             data:{    
                 id  :id,  
                 which:which, 
@@ -361,7 +531,7 @@
             // alert(id);
             
             $.ajax({
-              url:"__URL__/deletebm",
+              url:"__URL__/deletejb",
               data:{
                 id:id,
               },

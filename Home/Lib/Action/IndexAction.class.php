@@ -27,17 +27,149 @@ class IndexAction extends CommonAction{
         }
         $map["shenhe"] = 1;
         $map["bm"] = 1;
+        if($_GET["sex"]){
+        	$map["bmsex"] = $_GET["sex"];
+        }
 	    // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
-	    $list = $User->where($map)->order('bmtime')->page($_GET['p'].',6')->select();
+	    $list = $User->where($map)->order('bmtime')->page($_GET['p'].',8')->select();
 	    $this->assign('list',$list);// 赋值数据集
 	    import("ORG.Util.Page");// 导入分页类
 	    $count      = $User->where($map)->count();// 查询满足要求的总记录数
 
 
-	    $Page       = new Page($count,6);// 实例化分页类 传入总记录数和每页显示的记录数
+	    $Page       = new Page($count,8);// 实例化分页类 传入总记录数和每页显示的记录数
 	    $Page->setConfig('theme',"%totalRow% %header% %nowPage%/%totalPage% 页 <div class='btn2 clearfix'><div class='item'>%upPage%</div><div class='item'>%downPage%</div></div>");
 	    $show       = $Page->show();// 分页显示输出
 	    $this->assign('page',$show);// 赋值分页输出
+
+
+	    //本期嘉宾
+	    $Jiemu = M("Jiemu");
+	    $rrmap['isdelete'] = array('neq',1);
+	    $rrmap['shenhe'] = 1;
+	    $jm = $Jiemu->where($rrmap)->order('id DESC')->limit(2)->select();
+	    $jmid = $jm[0]['id'];
+	    $Jiabin = M("Jiabin");
+	    $mapjb['belongid'] = $jmid;
+	    $jblist = $Jiabin->where($mapjb)->order('bmtime')->select();
+	    $this->assign('jblist',$jblist);
+
+	    if(count($jm)<2){
+		    $this->assign('pre',0);
+	    }else{
+	    	$pre = $jm[1]['id'];
+		    $this->assign('pre',$pre);
+	    }
+		    
+
+
+    	//是否存在用户并记录用户数据
+		if ($result) {
+			$_SESSION['id'] = $result['id'];
+			$this->assign("jp_id",$result['jp_id']);
+			$this->display();
+		}else{
+			$result = $User->add($userinfo);
+			$_SESSION['id'] = $result;
+			if ($result) {
+				$this->display();
+			}else{
+			}
+		}
+		
+	}
+
+	public function wangqi(){
+		$userinfo = $this->wxuser;
+		$open_id = $userinfo['open_id'];
+		// var_dump($userinfo);
+		// $open_id = "ssssssssss";//====weixin3
+		$User = M("User");
+		$user_array['open_id'] = $open_id;
+		$result = $User->where($user_array)->find();
+
+		$jsskd_all=$this->js_sdk();
+
+        $jsskd = $jsskd_all['signPackage'];
+        $ip_list = $jsskd_all['ip_list'];
+
+        $this->assign('jsskd',$jsskd);
+        $this->assign('ip_list',$ip_list);
+        
+	    //本期嘉宾
+	    $jmid = $_GET["jmid"];
+	    $Jiabin = M("Jiabin");
+	    $mapjb['belongid'] = $jmid;
+	    $jblist = $Jiabin->where($mapjb)->order('bmtime')->select();
+	    $this->assign('jblist',$jblist);
+
+	    $Jiemu = M("Jiemu");
+	    $mapjm['id'] = $jmid;
+	    $jmname = $Jiemu->where($mapjm)->getField('name');
+	    $this->assign('jmname',$jmname);
+
+	    //下一期id
+	    $mapn['id'] = array('gt',$jmid);
+	    $mapn['isdelete'] = array('neq',1);
+	    $mapn['shenhe'] = 1;
+	    $nexts = $Jiemu->where($mapn)->order('id')->limit(1)->select();
+	    if(count($nexts)>0){
+	    	$next = $nexts[0]['id'];
+	    }else{
+	    	$next = 0;
+	    }
+
+	    $mapp['id'] = array('lt',$jmid);
+	    $mapp['isdelete'] = array('neq',1);
+	    $mapp['shenhe'] = 1;
+	    $pres = $Jiemu->where($mapp)->order('id DESC')->limit(1)->select();
+	    if(count($pres)>0){
+	    	$pre = $pres[0]['id'];
+	    }else{
+	    	$pre = 0;
+	    }
+
+	    $this->assign('next',$next);
+	    $this->assign('pre',$pre);
+
+    	//是否存在用户并记录用户数据
+		if ($result) {
+			$_SESSION['id'] = $result['id'];
+			$this->assign("jp_id",$result['jp_id']);
+			$this->display();
+		}else{
+			$result = $User->add($userinfo);
+			$_SESSION['id'] = $result;
+			if ($result) {
+				$this->display();
+			}else{
+			}
+		}
+		
+	}
+	public function jiemulist(){
+		$userinfo = $this->wxuser;
+		$open_id = $userinfo['open_id'];
+		// var_dump($userinfo);
+		// $open_id = "ssssssssss";//====weixin3
+		$User = M("User");
+		$user_array['open_id'] = $open_id;
+		$result = $User->where($user_array)->find();
+
+		$jsskd_all=$this->js_sdk();
+
+        $jsskd = $jsskd_all['signPackage'];
+        $ip_list = $jsskd_all['ip_list'];
+
+        $this->assign('jsskd',$jsskd);
+        $this->assign('ip_list',$ip_list);
+        
+	    $Jiemu = M("Jiemu");
+	    $map['shenhe'] = 1;
+	    $map['isdelete'] = array('neq',1);
+	    $list = $Jiemu->where($map)->order('id DESC')->select();
+	    $this->assign('list',$list);
+
 
     	//是否存在用户并记录用户数据
 		if ($result) {
@@ -340,6 +472,55 @@ class IndexAction extends CommonAction{
 		$this->assign('data',$data);
 
 		$Pics = M("Pics");
+ 		$condition->uid = $id; 
+		$imgs = $Pics->where($condition)->select(); 
+		$this->assign('pics',$imgs);
+		 
+		//是否存在用户并记录用户数据
+		if ($result) {
+			$_SESSION['id'] = $result['id'];
+			//echo $_SESSION['id'];
+			//$this->assign("times",$result['times']);
+			$this->assign("jp_id",$result['jp_id']);
+                       // $User->where("id={$_SESSION['id']}")->setField('times',$result['times']-1);
+                       // $this->doTimes($result['times']-1);
+			$this->display();
+		}else{
+			$result = $User->add($userinfo);
+			$_SESSION['id'] = $result;
+			if ($result) {
+				$this->display();
+			}else{
+				// echo 'error';
+                                //var_dump($userinfo);
+			}
+		}
+	}
+	public function jbdetail(){
+		// redirect('jieshu');
+		$userinfo = $this->wxuser;
+		$open_id = $userinfo['open_id'];
+		// var_dump($userinfo);
+		// $open_id = "ssssssssss";//====weixin3
+		$User = M("User");
+		$Jiabin = M("Jiabin");
+		$user_array['open_id'] = $open_id;
+		$result = $User->where($user_array)->find();
+
+		$jsskd_all=$this->js_sdk();
+
+        $jsskd = $jsskd_all['signPackage'];
+        $ip_list = $jsskd_all['ip_list'];
+
+        $this->assign('jsskd',$jsskd);
+        $this->assign('ip_list',$ip_list);
+
+        //以上是用户数据
+		$id = $_GET['id'];
+		$data = $Jiabin->find($id);
+		$this->assign('data',$data);
+
+		$Pics = M("Jbpic");
  		$condition->uid = $id; 
 		$imgs = $Pics->where($condition)->select(); 
 		$this->assign('pics',$imgs);

@@ -20,15 +20,73 @@
   <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
   <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
   <script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+
   <script src="__PUBLIC__/lib/sweet-alert.js"></script>
   <link rel="stylesheet" href="__PUBLIC__/lib/sweet-alert.css">
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript">
+// window.location.href="__URL__/jieshu";
+</script>
 </head>
-<body >
-  <div id="hdxz" onclick="tohome()">
+<body>
+  <input type="hidden" value="<{$data.shenhe}>" id="shenhe">
+  <div class="detailtop clearfix">
+    <div class="item"><span id="dpname"><img width="16" src="__PUBLIC__/images/<{$data.bmsex}>.png"><{$data.realname}></span></div>
+  </div>
+  <div class="peo_de">
+    <ul class="clearfix">
+      <li class="clearfix">
+        <label>年龄</label>
+        <div class="right"><{$data.age}>岁</div>
+      </li>
+      <li class="clearfix">
+        <label>星座</label>
+        <div class="right"><{$data.xingzuo}></div>
+      </li>
+      <li class="clearfix">
+        <label>学历</label>
+        <div class="right"><{$data.study}></div>
+      </li>
+      <li class="clearfix">
+        <label>年薪</label>
+        <div class="right"><{$data.salary}></div>
+      </li>
+      <li class="clearfix">
+        <label>职业</label>
+        <div class="right"><{$data.creer}></div>
+      </li>
+    </ul>
+  </div>
+  <div class="detailmid">
+    <volist name="pics" id="vo">
+    <img src="http://games.hzlianhai.com/xiangqin/Uploads/<{$vo.url}>" alt="图片不能显示">
+    </volist>
+  </div>
+  <div class="detailbottom">
+    <div class="csxy">自我描述:<{$data.selfdesc}></div>
+    <div class="csxy">择偶标准:<{$data.zeoubz}></div>
+    <div class="btn2 clearfix">
+      <div class="item">
+        <a class="btn" href="__URL__/index">返回首页</a>
+      </div>
+      <div class="item">
+        <a class="btn" onclick="showid('share')">分享出去</a>
+      </div>
+      
+      <!-- <div class="item">
+        <a class="btn" href="__URL__/baoming">我要报名</a>
+      </div> -->
+      <!-- <div class="item">
+        <a class="btn" onclick="yongbao('__URL__/yongbao',<{$data.id}>)"><img src="__PUBLIC__/images/heart2.png" style="width:14px;">约一下</a>
+      </div> -->
+    </div>
+
+    <div style="margin-top:10px; clear:both;width:95%;margin-left:2.5%;">
+      <a class="btn" href="__URL__/baoming">我要报名</a>
+    </div>
     <div class="hdxz">
       <h2>活动细则</h2>
-
       <h3>报名时间:</h3><p>
 即日起(不收取任何费用)</p><h3>
 
@@ -54,130 +112,119 @@
       </p>
 
     </div>
-    <a class="btn" onclick="tohome()">返回首页</a>
+    <!-- <div class="hdxz">
+      <h2>奖品设置</h2>
+      <h3>冠军大礼包  1名 价值19610元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡一份</td>
+            <td>价值2600元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值3688元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影一部</td>
+            <td>价值8888元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR神奇语言卡一套</td>
+            <td>价值298元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一套</td>
+            <td>价值156元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>亚军大礼包  1名  价值9766元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值1200元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值2288元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影抵用券</td>
+            <td>价值2000元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR神奇语言卡一套</td>
+            <td>价值298元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>季军大礼包  1名  价值6704元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值500元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值1068元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影抵用券</td>
+            <td>价值1000元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一套</td>
+            <td>价值156元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>入围奖礼包 10名（不含冠亚季军）  价值539元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值500元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一册</td>
+            <td>价值39元</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>另，排名在前30位的宝贝，将有机会受邀参加东美培训少儿模特课程体验。</p>
+    </div> -->
   </div>
-
-  <div id="home">
-    
-    <img src="__PUBLIC__/images/hb.png" style="width:100%;" id="shb">
-    <div class="tit">本期嘉宾</div>
-    <div class="jiabin_con">
-      <div class="homebottom">
-        <ul class="clearfix">
-          <volist name="jblist" id="jbvo">
-          <li>
-            <div class="img" onclick="window.location.href='__URL__/jbdetail?id=<{$jbvo.id}>'"><img src="http://games.hzlianhai.com/xiangqin/Uploads/<{$jbvo.thumb}>"></div>
-            <div class="detail clearfix" style="line-height:14px;">
-              <span style="width:66%;max-height:25px;"><img width="14" src="__PUBLIC__/images/<{$jbvo.bmsex}>.png"> <{$jbvo.realname}></span>
-            </div>
-          </li>
-          </volist>
-        </ul>
-      </div>
-    </div>
-    <div style="margin-top:10px; clear:both;width:95%;margin-left:2.5%;">
-      <a class="btn" dataid="<{$pre}>" id="wqid" onclick="towangqi()">查看往期嘉宾</a>
-    </div>
-    <script type="text/javascript">
-      function towangqi(){
-        var id=$("#wqid").attr("dataid");
-        if(id=="0"){
-          alert("没有了");
-        }else{
-          window.location.href="__URL__/wangqi?jmid="+id;
-        }
-      }
-    </script>
-
-    <div class="tit" style="margin-top:30px;">活动嘉宾</div>
-    <div class="tiaozhuan clearfix">
-      <div class="left">跳到第 <input type="text" id="tzpage"/> 页</div>
-      <a class="tz" onclick="tzpage()">确定</a>
-    </div>  
-    <div class="shaixuan_sex clearfix">
-      <input type="hidden" value="<{$_GET['sex']}>" id="getsex">
-      <a href="__URL__/index?sex=男" class="male">只看男生</a>
-      <a href="__URL__/index?sex=女" class="female">只看女生</a>
-      <a href="__URL__/index" class="all">全部</a>
-    </div>
-    <div class="homebottom">
-      <ul class="clearfix">
-        <volist name="list" id="vo">
-        <li>
-          <div class="img" onclick="window.location.href='__URL__/detail?id=<{$vo.id}>'"><img src="http://games.hzlianhai.com/xiangqin/<{$vo.thumb}>"></div>
-          <div class="detail clearfix" style="line-height:14px;">
-            <span style="width:66%;max-height:25px;"><img width="14" src="__PUBLIC__/images/<{$vo.bmsex}>.png"> <{$vo.realname}></span>
-            <span id="pnum_<{$vo.id}>"><{$vo.supporter}>位</span>
-          </div>
-          <a class="btn_y" onclick="yongbao('__URL__/yongbao',<{$vo.id}>);" style="background:#FF6DA3;font-size:10px;width:50%;line-height: 20px;margin-left:50%;color:#fff;"><img src="__PUBLIC__/images/heart2.png" style="width:12px;">约一下</a>
-        </li>
-        </volist>
-      </ul>
-      <div>
-        <{$page}>
-      </div>
-    </div>
-    <div class="homemid">
-      <!-- <a class="btn" href="__URL__/baoming">我要报名</a>
-      <a class="btn" onclick="tolayer('hdxz')" style="margin-top:10px;">活动细则</a> -->
-      <div class="btn2 clearfix">
-        <div class="item">
-          <a class="btn" href="__URL__/baoming">我要报名</a>
-        </div>
-        <div class="item">
-          <a class="btn" onclick="tolayer('hdxz')">活动细则</a>
-        </div>
-      </div>
-    </div>
-  </div>
-    
-  <!-- <{$jsskd}> -->
-  <!-- <{$tt}> -->
+  <div id="share" onclick="hideid('share')"></div>
   <script type="text/javascript">
-
-    var $_GET = (function(){
-      var url = window.document.location.href.toString();
-      var u = url.split("?");
-      if(typeof(u[1]) == "string"){
-          u = u[1].split("&");
-          var get = {};
-          for(var i in u){
-              var j = u[i].split("=");
-              get[j[0]] = j[1];
-          }
-          return get;
-      } else {
-          return {};
-      }
-    })();
+  var burl = "__URL__/";
   $(function(){
-    if($("#getsex").val()){
-      if($("#getsex").val()=='男'){
-        $(".shaixuan_sex a").eq(0).addClass('active');
-      }else{
-        $(".shaixuan_sex a").eq(1).addClass('active');
-      }
-    }else{
-      $(".shaixuan_sex a").eq(2).addClass('active');
+    if($("#shenhe").val()=="0"){
+      $("#ddsh").show();
     }
   });
-  var burl = "__URL__/";
-  function tohome(){
-    $('#jpsz').hide();
-    $('#hdxz').hide();
-    $('#home').show();
-  }
-  function tolayer(id){
+  function showid (id) {
+    // body...
     $('#'+id).show();
-    $('#home').hide();
   }
-  function tzpage(){
-    var topage = $('#tzpage').val();
-    window.location.href="__URL__/index?p="+topage;
+  function hideid(id){
+    $('#'+id).hide();
   }
-    // console.log(<{$jsskd}>);
-// alert('1');
-    wx.config({
+     wx.config({
     debug: false,//false true
   appId: '<{$jsskd.appId}>',
   timestamp:'<{$jsskd.timestamp}>',
@@ -228,7 +275,7 @@
      wx.showOptionMenu();
 
      var link = window.location.href;
-     var imgUrl = 'http://games.hzlianhai.com/xiangqin/Public/images/hb.png';
+     var imgUrl = $('.detailmid img')[0].src;//'http://games.hzlianhai.com/haoyangmao/Public/images/1.jpg';
 
        wx.onMenuShareAppMessage({
           title: '今天约吗？', // 分享标题
@@ -253,7 +300,7 @@
       });
 
        wx.onMenuShareTimeline({
-          title: '今天约吗?', // 分享标题
+          title: '今天约吗？', // 分享标题
           link: link, // 分享链接
           imgUrl: imgUrl, // 分享图标
           success: function () { 
@@ -273,7 +320,6 @@
 
   });
 
-// alert('3');
-  </script>  
+  </script>
 </body>
 </html>

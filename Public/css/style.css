@@ -1,6 +1,6 @@
 body{
 	font-family: "Microsoft Yahei";
-	background: #E6AEFC;
+	background: #BBE8E4;
 	padding-bottom: 30px;
 }
 #share{
@@ -253,7 +253,7 @@ body{
 	width: 100%;
 }
 .peo_de{
-	background: #555;
+	background: #40ABDF;
 	padding: 20px 0;
 	margin-bottom: 20px;
 }
@@ -263,7 +263,6 @@ body{
 }
 .peo_de ul li{
 	line-height: 40px;
-	border-bottom: 1px solid #eee;
 	margin-bottom: 10px;
 	width: 48%;
 	float: left;
@@ -281,7 +280,7 @@ body{
 .peo_de ul li label{
 	width: 30%;
 	background: #fff ;
-	color:#29AE59;
+	color:#40ABDF;
 	float: left;
 	text-align: center;
 	display: block;
@@ -291,15 +290,61 @@ body{
 	color: #fff;
 	float: left;
 	text-align: center;
+	background: rgba(255,255,255,0.5);
 }
+.peo_de ul li:last-child .right{
+	width: 85%;
+}
+.shaixuan_sex{
+	width: 90%;
+	margin: 10px auto;
+	border-radius: 5px;
+	background: #40ABDF;
+	color: #fff;
+	text-align: center;
+}
+.shaixuan_sex a{
+	float: left;
+	display: block;
+	width: 33%;
+	line-height: 35px;
+	color: #fff;
 
-
-
-
-
-
-
-
+}
+.shaixuan_sex a:nth-child(2){
+	border-radius: 5px 0 0 5px;
+}
+.shaixuan_sex a:last-child{
+	border-radius: 0 5px 5px 0 ;
+	width: 34%;
+}
+.shaixuan_sex a.active{
+	background: #fff;
+	color: #40ABDF;
+}
+.tit{
+	background: #40ABDF;
+	color: #fff;
+	line-height: 40px;
+	font-size: 14px;
+	text-align: center;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.jiemulist{
+	margin-top: 10px;
+}
+.jiemulist li{
+	line-height: 40px;
+	border-bottom: 1px dotted #eee;
+}
+.jiemulist li a{
+	color: #40ABDF;
+	display: block;
+	line-height: 40px;
+	padding-left: 20px;
+}
 
 
 

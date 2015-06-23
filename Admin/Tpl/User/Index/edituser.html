@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>控制台</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- basic styles -->
+    <link href="__PUBLIC__/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__PUBLIC__/admin/assets/css/font-awesome.min.css" />
+    <!-- page specific plugin styles -->
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="__PUBLIC__/admin/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/admin/assets/css/qfc-min.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="__PUBLIC__/admin/assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+
+    <!-- ace settings handler -->
+    <script src="__PUBLIC__/admin/assets/js/ace-extra.min.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/admin/assets/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/admin/assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar navbar-default" id="navbar">
+      <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+          <a href="#" class="navbar-brand">
+            <small>
+              <i class="icon-leaf"></i>
+              后台管理系统
+            </small>
+          </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+
+        <div class="navbar-header pull-right" role="navigation">
+          <ul class="nav ace-nav">
+            <li class="light-blue">
+              <a  href="__ROOT__/admin.php/Login/doLogout" >
+                <span class="user-info">
+                 退出
+                </span>
+              </a>
+            </li>
+          </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+      </div><!-- /.container -->
+    </div>
+
+    <div class="main-container" id="main-container">
+
+      <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+          <span class="menu-text"></span>
+        </a>
+
+        <div class="sidebar" id="sidebar">
+
+          <ul class="nav nav-list">
+
+            <li>
+              <a href="__URL__/add">
+                <i class="icon-shopping-cart"></i>
+                <span class="menu-text"> 添加产品 </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="__URL__/lists" >
+                <i class="icon-list-alt"></i>
+                <span class="menu-text"> 产品列表 </span>
+              </a>
+            </li>
+            <li>
+              <a href="__URL__/adduser">
+                <i class="icon-user"></i>
+                <span class="menu-text"> 添加用户 </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="__URL__/userlist" >
+                <i class="icon-group"></i>
+                <span class="menu-text"> 用户列表 </span>
+              </a>
+            </li>
+            <li>
+              <a href="__URL__/orders">
+                <i class="icon-calendar"></i>
+                <span class="menu-text"> 订单列表 </span>
+              </a>
+            </li>
+ 
+          </ul><!-- /.nav-list -->
+
+          <div class="sidebar-collapse" id="sidebar-collapse">
+            <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+          </div>
+          
+
+        </div>
+
+        <div class="main-content">
+          <div class="breadcrumbs" id="breadcrumbs">
+
+
+            <ul class="breadcrumb">
+              <li>
+                <i class="icon-home home-icon"></i>
+                <a href="#">修改用户</a>
+                <!-- <small>
+                  <i class="icon-double-angle-right"></i>
+                   会员活动添加
+                </small> -->
+              </li>
+            </ul><!-- .breadcrumb -->
+
+          </div>
+
+          <div class="page-content">
+            <div class="page-header">
+
+
+
+            </div><!-- /.page-header -->
+      
+
+            <div class="row">
+              <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    
+                    <form class="form-horizontal" role="form" enctype="multipart/form-data" method='post' id="editform" action="__URL__/editusersub">
+
+                      <div class="form-group has-error">
+                        <label class="col-sm-2 control-label" for="product_model">  用户手机：</label>
+                        <div class="col-sm-4">
+                          <input type="text" id="product_model" class="col-xs-12 col-sm-12" name="product_model" value="<{$result.mobile}>" disabled="">
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline">
+                          
+                        </div>
+                      </div>
+
+                      <div class="space-4"></div>
+
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="stocks">  用户姓名：</label>
+                        <div class="col-sm-4">
+                          <input type="text" id="stocks" class="col-xs-12 col-sm-12" name="stocks" value="<{$result.name}>">
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline">
+                          
+                        </div>
+                      </div>
+                      
+                      <div class="space-4"></div>
+
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="remarks">  备注：</label>
+                        <div class="col-sm-4">
+                          <textarea style="width:100%;height:100px;" id="remarks" ><{$result.remarks}></textarea>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline">
+                          
+                        </div>
+                      </div>
+                     <!--  <input type="submit" value="提交"/> -->
+                    </form>
+                    <!-- <a href="javascript:;" onclick="getif()">getif</a> -->
+                    <div>
+                      <div class="clearfix">
+                        <div class="col-sm-offset-1 col-sm-10">
+                          <!-- <input type="submit" value="提交" class="button" style="display:none;"> -->
+                          <button class="btn btn-info" type="button" onclick="subadd()">
+                          <i class="icon-ok bigger-110"></i>
+                          保存
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.row -->
+
+                <div class="hr hr32 hr-dotted"></div>
+
+
+                <!-- PAGE CONTENT ENDS -->
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+
+
+          </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+      </div><!-- /.main-container-inner -->
+
+      <a href="javascript:;" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+      </a>
+    </div><!-- /.main-container -->
+
+    <!-- basic scripts -->
+
+    <!--[if !IE]> -->
+
+    <script src="__PUBLIC__/admin/assets/js/jquery-2.0.3.min.js"></script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+    <!--[if !IE]> -->
+
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__PUBLIC__/admin/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+    <script type="text/javascript">
+      if("ontouchend" in document) document.write("<script src='__PUBLIC__/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+    </script>
+    <script src="__PUBLIC__/admin/assets/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/assets/js/typeahead-bs2.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!--[if lte IE 8]>
+      <script src="__PUBLIC__/admin/assets/js/excanvas.min.js"></script>
+    <![endif]-->
+
+    <script src="__PUBLIC__/admin/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="__PUBLIC__/admin/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="__PUBLIC__/admin/assets/js/jquery.slimscroll.min.js"></script>
+    
+
+    <script src="__PUBLIC__/admin/assets/js/bootbox.min.js"></script>
+      
+   
+
+      <script type="text/javascript">
+
+      </script>
+
+    <!-- ace scripts -->
+
+    <script src="__PUBLIC__/admin/assets/js/ace-elements.min.js"></script>
+    <script src="__PUBLIC__/admin/assets/js/ace.min.js"></script>
+    <script src="__PUBLIC__/admin/assets/js/yutuna.js"></script>
+
+    <!-- inline scripts related to this page -->
+    <link rel="stylesheet" href="__PUBLIC__/admin/assets/css/datepicker.css">
+    <script src="__PUBLIC__/admin/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+
+
+      <script type="text/javascript">
+
+      function valid(){
+        if(!$("#product_model").val()){
+          alert("手机号不能为空");
+          return false;
+        }
+        if(!checkMobile($('#product_model').val())){
+          alert('手机号码格式错误！');
+          return false;
+        }
+        if($('#remarks').val().length>100){
+          alert('备注信息字数不大于100字！')
+          return false;
+        }
+        return true;
+      }
+      function checkMobile(text){
+        // alert(text);
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+          if(!myreg.test(text)){
+                  // alert('请输入有效的手机号码！');
+                  // document.form1.mobile.focus();
+                  return false;
+          }else{
+            return true;
+          }
+      }
+      function subadd(){
+        // document.getElementById("addform").submit();
+        if(!valid()){
+          return;
+        }
+        $.ajax({
+          url:"__URL__/editusersub",
+          type:"post",
+          data:{
+            mobile:$("#product_model").val(),
+            name:$("#stocks").val(),
+            remarks:$("#remarks").val(),
+          },
+          success:function(data){
+            if(data.isSuccess){
+              alert('success');
+              // $("#img").attr("src",BASEURL+"/Uploads/"+data.image);
+              // $("#img").show();
+              // imgSuccess = false;
+              setTimeout(function(){
+                window.location.href="__URL__/edituser?mobile="+data.m;
+              },100);
+            }else{
+              alert(data.msg);
+            }
+          }
+        });
+      }
+      
+      (function($,undefined){
+        // if(<{$result.remarks}>){
+        //   alert(<{$result.remarks}>);
+        //   $('#remarks').val(<{$result.remarks}>);
+        // }
+        
+        //操作：删除
+        $(".J_Table").on("click", ".J_DeleteTr", function() {
+          var _this = $(this);
+          bootbox.confirm("确认删除", function(result) {
+           if(result) {
+             _this.parent().parent().parent().remove();
+           }
+          });
+        })
+
+
+
+      })(jQuery);
+      </script>
+</body>
+</html>
+
