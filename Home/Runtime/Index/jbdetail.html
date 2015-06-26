@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>今天约吗？</title>
+  <meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="full-screen" content="yes"/>
+<meta name="screen-orientation" content="portrait"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="360-fullscreen" content="true"/>
+  <meta name="Keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+  <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+
+  <script src="__PUBLIC__/lib/sweet-alert.js"></script>
+  <link rel="stylesheet" href="__PUBLIC__/lib/sweet-alert.css">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript">
+// window.location.href="__URL__/jieshu";
+</script>
+</head>
+<body>
+  <input type="hidden" value="<{$data.shenhe}>" id="shenhe">
+  <div class="detailtop clearfix">
+    <div class="item"><span id="dpname"><img width="16" src="__PUBLIC__/images/<{$data.bmsex}>.png"><{$data.realname}></span></div>
+  </div>
+  <div class="peo_de">
+    <ul class="clearfix">
+      <li class="clearfix">
+        <label>年龄</label>
+        <div class="right"><{$data.age}>岁</div>
+      </li>
+      <li class="clearfix">
+        <label>星座</label>
+        <div class="right"><{$data.xingzuo}></div>
+      </li>
+      <li class="clearfix">
+        <label>学历</label>
+        <div class="right"><{$data.study}></div>
+      </li>
+      <li class="clearfix">
+        <label>年薪</label>
+        <div class="right"><{$data.salary}></div>
+      </li>
+      <li class="clearfix">
+        <label>职业</label>
+        <div class="right"><{$data.creer}></div>
+      </li>
+    </ul>
+  </div>
+  <div class="detailmid">
+    <volist name="pics" id="vo">
+    <img src="http://games.hzlianhai.com/xiangqin/Uploads/<{$vo.url}>" alt="图片不能显示">
+    </volist>
+  </div>
+  <div class="detailbottom">
+    <div class="csxy">自我描述:<{$data.selfdesc}></div>
+    <div class="csxy">择偶标准:<{$data.zeoubz}></div>
+    <div class="btn2 clearfix">
+      <div class="item">
+        <a class="btn" href="__URL__/index">返回首页</a>
+      </div>
+      <div class="item">
+        <a class="btn" onclick="showid('share')">分享出去</a>
+      </div>
+      
+      <!-- <div class="item">
+        <a class="btn" href="__URL__/baoming">我要报名</a>
+      </div> -->
+      <!-- <div class="item">
+        <a class="btn" onclick="yongbao('__URL__/yongbao',<{$data.id}>)"><img src="__PUBLIC__/images/heart2.png" style="width:14px;">约一下</a>
+      </div> -->
+    </div>
+
+    <div style="margin-top:10px; clear:both;width:95%;margin-left:2.5%;">
+      <a class="btn" href="__URL__/baoming">我要报名</a>
+    </div>
+    <div class="hdxz">
+      <h2>活动细则</h2>
+      <h3>报名时间:</h3><p>
+即日起(不收取任何费用)</p><h3>
+
+报名条件:</h3>
+<p>
+1、  年满20周岁单身男女，报名时请出示相关身份证件。 <br>
+2、  报名时，请阅读报名表格并认真填写，上传3-5张近期个人生活照，要求五官清晰，其中必须有一张全身照。<br>
+3、  接受团体报名，可为员工或客户预约专场活动，由所在单位团体出具成员证明信。<br>
+4、  报名需关注“FM996996996”微信公众号，发送“相亲”进行报名。<br>
+5、  如果您中途取消关注“FM996996996”微信公众号，将取消报名资格。</p><h3>
+
+投票方式：</h3>
+<p>
+1、  所有微信用户均可进行投票，每天限投一票。<br>
+2、  投票用户需关注“FM996996996”微信公众号，点击自定义菜单“相亲”进入投票页面，进行投票。<br>
+3、  如果您取消关注FM996公众号，投票将自动扣除。</p><h3>
+
+注意事项：</h3>
+<p>
+1、  所有嘉宾身份均为实名制，切勿弄虚作假。<br>
+2、  一旦发现照片非本人或是网络图片，将取消报名资格。
+
+      </p>
+
+    </div>
+    <!-- <div class="hdxz">
+      <h2>奖品设置</h2>
+      <h3>冠军大礼包  1名 价值19610元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡一份</td>
+            <td>价值2600元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值3688元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影一部</td>
+            <td>价值8888元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR神奇语言卡一套</td>
+            <td>价值298元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一套</td>
+            <td>价值156元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>亚军大礼包  1名  价值9766元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值1200元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值2288元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影抵用券</td>
+            <td>价值2000元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR神奇语言卡一套</td>
+            <td>价值298元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>季军大礼包  1名  价值6704元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值500元</td>
+          </tr>
+          <tr>
+            <td>UncleVision儿童写真套餐一套</td>
+            <td>价值1068元</td>
+          </tr>
+          <tr>
+            <td>柠檬微甜高端定制亲子微电影抵用券</td>
+            <td>价值1000元</td>
+          </tr>
+          <tr>
+            <td>港澳双人游4天3晚一次</td>
+            <td>价值3980元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一套</td>
+            <td>价值156元</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>入围奖礼包 10名（不含冠亚季军）  价值539元</h3>
+      <table style="width:100%;">
+        <tbody>
+          <tr>
+            <td>东美培训少儿模特班课程卡抵价券</td>
+            <td>价值500元</td>
+          </tr>
+          <tr>
+            <td>AR涂涂乐一册</td>
+            <td>价值39元</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>另，排名在前30位的宝贝，将有机会受邀参加东美培训少儿模特课程体验。</p>
+    </div> -->
+  </div>
+  <div id="share" onclick="hideid('share')"></div>
+  <script type="text/javascript">
+  var burl = "__URL__/";
+  $(function(){
+    if($("#shenhe").val()=="0"){
+      $("#ddsh").show();
+    }
+  });
+  function showid (id) {
+    // body...
+    $('#'+id).show();
+  }
+  function hideid(id){
+    $('#'+id).hide();
+  }
+     wx.config({
+    debug: false,//false true
+  appId: '<{$jsskd.appId}>',
+  timestamp:'<{$jsskd.timestamp}>',
+  nonceStr: '<{$jsskd.nonceStr}>',
+  signature: '<{$jsskd.signature}>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'hideMenuItems',
+      'showMenuItems',
+      'hideAllNonBaseMenuItem',
+      'showAllNonBaseMenuItem',
+      'translateVoice',
+      'startRecord',
+      'stopRecord',
+      'onRecordEnd',
+      'playVoice',
+      'pauseVoice',
+      'stopVoice',
+      'uploadVoice',
+      'downloadVoice',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage',
+      'getNetworkType',
+      'openLocation',
+      'getLocation',
+      'hideOptionMenu',
+      'showOptionMenu',
+      'closeWindow',
+      'scanQRCode',
+      'chooseWXPay',
+      'openProductSpecificView',
+      'addCard',
+      'chooseCard',
+      'openCard'
+    ]
+  });
+
+// alert('2');
+  wx.ready(function () {
+    // 在这里调用 API
+     // wx.showOptionMenu();
+     WeixinJSBridge.call('hideOptionMenu');
+
+     var link = window.location.href;
+     var imgUrl = $('.detailmid img')[0].src;//'http://games.hzlianhai.com/haoyangmao/Public/images/1.jpg';
+
+       wx.onMenuShareAppMessage({
+          title: '今天约吗？', // 分享标题
+          desc: '单身狗看过来，想要脱单？就来参加今天约吗',
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () {
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     //alert("喵喵感谢您！success");
+          //     //location.reload();
+          //     window.location.href="http://qiushi.ncnwt.com/images/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () {
+              // 用户取消分享后执行的回调函数
+              //alert("喵喵感谢您！cancel");
+              // location.reload();
+          }
+      });
+
+       wx.onMenuShareTimeline({
+          title: '今天约吗？', // 分享标题
+          link: link, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () { 
+          //   $.post('Index/doTimes',{"times":1},function(data){
+          //              // alert('jjjj');
+          //               },"json");
+          // window.times++;
+          //     // 用户确认分享后执行的回调函数
+          //     window.location.href="http://games.hzlianhai.com/haoyangmao/Rank/scoreInfo/";
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+              // location.reload();
+          }
+      });
+
+
+  });
+
+  </script>
+</body>
+</html>

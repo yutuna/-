@@ -1,0 +1,71 @@
+body {font-family: tahoma,arial,\5b8b\4f53,sans-serif;}
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {vertical-align: middle;}
+.form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {padding: 0}
+.dataTables_wrapper .qfc-row-form-ft:last-child {padding:6px 0;}
+.page-header .form-inline .form-group {margin-bottom: 0;}
+.color-wrap {background: #eee;}
+.color-wrap label {margin: 0 4px;}
+.qfc-info-readed {color: #595959;}
+.qfc-info-readed:hover {color: #808080;}
+.modal-dialog .bootbox-body {overflow:auto}
+@media screen and (min-width: 768px) {	
+	.modal-dialog {
+		width:850px;
+	}
+}
+#navbar {height:70px;}
+#navbar-container {margin-top:12px}
+.daterangepicker .ranges .input-mini {padding:0 2px!important}
+.form-group {margin-bottom: 15px;overflow: hidden;}
+.input-group-wrap {display: inline-block;}
+
+
+.cate-box {padding: 10px 50px}
+.cate-box ul,.cate-box li {list-style:none;}
+.cate-box .cate {
+	height: 275px;
+	float: left;
+	display: inline;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	margin: 0 20px;
+}
+.cate-box .cate ul {margin: 0 0 10px 0; overflow-x: hidden;overflow-y: auto; height: 275px;}
+.cate-box .cate  li{
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	text-indent: 10px;
+	cursor:pointer;
+}
+.cate-box .cate  li a{
+	display: block;
+	font: 100 12px/30px "SimSun";
+}
+.cate-box .cate a:hover {background: #e9e9e9;}
+.cate-box .cate  li.selected a{
+	background: #e9e9e9;
+	color: #F60;
+}
+
+.qfc-error {color: #D68273;}
+.none {display: none;}
+
+.product-cate .default {margin: 5px 10px 0; }
+.product-cate .delete {margin: 5px 10px 0;}
+.product-cate .iup, .idown{margin:8px 10px 0 ;}
+
+.wp100 {width: 100%;}
+.dataTables_wrapper input[type=text], .dataTables_wrapper select {margin:0;}
+
+.product-line div { padding: 0 5px; border:1px dashed #ddd; float:left; margin:1px;}
+.product-line a {display: inline-block; width: 14px;height: 14px; text-align: center;}
+
+.color-wrap {padding: 5px 10px; margin-bottom:10px;}
+.color-wrap label {width: 100px}
+.color-wrap label input {vertical-align: -1px; margin-right: 2px;}
+input.customInput { padding: 2px; margin-right: 5px;}
+
+.goods-num th {background: #f0f0f0; text-align: center;}
+.goods-num td {border-bottom: 1px solid #ccc; color: #333; height: 35px; line-height: 20px; text-align: center; }
+.goods-num td p {margin: 0;}

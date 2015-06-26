@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>Bootstrap表单组件 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- basic styles -->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet" />1
+
+		<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
+
+		<script src="js/jquery-2.0.3.min.js"></script>1
+	</head>
+
+	<body>
+
+		<div class="main-container" id="main-container">
+
+														<label for="timepicker1">Time Picker</label>
+
+														<div class="input-group bootstrap-timepicker">
+															<input id="timepicker1" type="text" class="form-control" />
+															<span class="input-group-addon">
+																<i class="icon-time bigger-110"></i>
+															</span>
+														</div>
+
+		</div>
+
+
+		<script src="js/date-time/bootstrap-timepicker.min.js"></script>1
+		<script type="text/javascript">
+			jQuery(function($) {
+				
+				
+				$('#timepicker1').timepicker({
+					minuteStep: 1,
+					showSeconds: true,
+					showMeridian: false
+				}).next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+				
+			
+			});
+		</script>
+</body>
+</html>

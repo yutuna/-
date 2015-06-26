@@ -68,7 +68,7 @@
             <li>
               <a href="__URL__/userlist">
                 <i class="icon-shopping-cart"></i>
-                <span class="menu-text"> 报名 </span>
+                <span class="menu-text"> 约吗 </span>
               </a>
             </li>
             <li class="active">
@@ -169,6 +169,9 @@
                                       </button>
                                       <button class="btn btn-xs btn-warning" dataid="<{$vo.id}>" onclick="modifyJiemu(this);">
                                         <i class="icon-edit bigger-120">修改</i>
+                                      </button>
+                                      <button class="btn btn-xs btn-primary" dataid="<{$vo.id}>" onclick="totop(<{$vo.id}>);">
+                                        <i class="icon-edit bigger-120">设为本期</i>
                                       </button>
                                     </div>
                                   </td>
@@ -310,6 +313,23 @@
 
 
     <script type="text/javascript">
+      function totop(id){
+        $.ajax({
+            url:"__URL__/totop",
+            type:"post",
+            data:{
+              id:id,
+            },
+            success:function(data){
+              if(data.isSuccess){
+                alert("操作成功");
+                location.reload();
+              }else{
+                alert("出错了");
+              }
+            }
+          });
+      }
       function makeShow(id){
         $("#"+id).show();
       }

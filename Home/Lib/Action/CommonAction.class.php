@@ -7,15 +7,15 @@ class CommonAction extends Action {
 	
 
 	public function _initialize(){
-		$this->appid = "wxacf21161e3c578f1";
-                $this->secret = "a9edccfb3018342657334dabd8873357";
+		$this->appid = "wxe4c46a9c9316c0db";
+                $this->secret = "ae4b1fab3d780fbb3df5f760d576cb7a";
 		$this->wxoauth();
 		session_start();
 	}
 
 	public function wxoauth(){
 
-		if(empty($_SESSION['user'])){
+		if(empty($_SESSION['user'])||empty($_SESSION['user']['openid'])){
 	             $code = isset($_GET['code'])?$_GET['code']:'';
 	             if(!$code){
 	                  $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->appid.'&redirect_uri=http://games.hzlianhai.com/xiangqin/index.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';

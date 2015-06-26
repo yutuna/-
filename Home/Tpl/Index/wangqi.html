@@ -145,13 +145,14 @@
   wx.ready(function () {
     // 在这里调用 API
      wx.showOptionMenu();
+     // WeixinJSBridge.call('hideOptionMenu');
 
      var link = window.location.href;
      var imgUrl = 'http://games.hzlianhai.com/xiangqin/Public/images/hb.png';
 
        wx.onMenuShareAppMessage({
           title: '今天约吗？', // 分享标题
-          desc: '你今天约了吗？',
+          desc: '单身狗看过来，想要脱单？就来参加今天约吗',
           link: link, // 分享链接
           imgUrl: imgUrl, // 分享图标
           success: function () {

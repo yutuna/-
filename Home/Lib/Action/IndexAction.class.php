@@ -3,8 +3,39 @@
 class IndexAction extends CommonAction{
 // class IndexAction extends Action{
 	public $auth;
+	public function aa(){
+		// session(null);
+		// echo "1";
+		$userinfo = $this->wxuser;
+		$open_id = $userinfo['open_id'];
+		// var_dump($userinfo);
+		// $open_id = "ssssssssss";//====weixin3
+		$User = M("User");
+		$user_array['open_id'] = $open_id;
+		$result = $User->where($user_array)->find();
 
-	
+		$jsskd_all=$this->js_sdk();
+
+        $jsskd = $jsskd_all['signPackage'];
+        // $ip_list = $jsskd_all['ip_list'];
+
+        $this->assign('jsskd',$jsskd);
+        // $this->assign('ip_list',$ip_list);
+
+    	//是否存在用户并记录用户数据
+		if ($result) {
+			$_SESSION['id'] = $result['id'];
+			$this->display();
+		}else{
+			$result = $User->add($userinfo);
+			$_SESSION['id'] = $result;
+			if ($result) {
+				$this->display();
+			}else{
+			}
+		}
+		$this->display();
+	}
 	public function index(){
 		$userinfo = $this->wxuser;
 		$open_id = $userinfo['open_id'];
@@ -17,10 +48,10 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
         //展示图片数据
         if(!$_GET['p']){
         	$_GET['p'] = 1;
@@ -47,10 +78,12 @@ class IndexAction extends CommonAction{
 	    $Jiemu = M("Jiemu");
 	    $rrmap['isdelete'] = array('neq',1);
 	    $rrmap['shenhe'] = 1;
-	    $jm = $Jiemu->where($rrmap)->order('id DESC')->limit(2)->select();
+	    $jm = $Jiemu->where($rrmap)->order('toptime DESC,id DESC')->limit(2)->select();
 	    $jmid = $jm[0]['id'];
 	    $Jiabin = M("Jiabin");
 	    $mapjb['belongid'] = $jmid;
+	    $mapjb['shenhe'] = 1;
+	    $mapjb['isdelete'] = array('neq',1);
 	    $jblist = $Jiabin->where($mapjb)->order('bmtime')->select();
 	    $this->assign('jblist',$jblist);
 
@@ -91,15 +124,17 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
         
 	    //本期嘉宾
 	    $jmid = $_GET["jmid"];
 	    $Jiabin = M("Jiabin");
 	    $mapjb['belongid'] = $jmid;
+	    $mapjb['isdelete'] = array('neq',1);
+	    $mapjb['shenhe'] = 1;
 	    $jblist = $Jiabin->where($mapjb)->order('bmtime')->select();
 	    $this->assign('jblist',$jblist);
 
@@ -159,10 +194,10 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
         
 	    $Jiemu = M("Jiemu");
 	    $map['shenhe'] = 1;
@@ -199,10 +234,10 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
         // var_dump($jsskd);
         // var_dump($ip_list);
 
@@ -373,10 +408,10 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
 
         //以上是用户数据
 
@@ -461,10 +496,10 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
 
         //以上是用户数据
 		$id = $_GET['id'];
@@ -510,10 +545,10 @@ class IndexAction extends CommonAction{
 		$jsskd_all=$this->js_sdk();
 
         $jsskd = $jsskd_all['signPackage'];
-        $ip_list = $jsskd_all['ip_list'];
+        // $ip_list = $jsskd_all['ip_list'];
 
         $this->assign('jsskd',$jsskd);
-        $this->assign('ip_list',$ip_list);
+        // $this->assign('ip_list',$ip_list);
 
         //以上是用户数据
 		$id = $_GET['id'];
@@ -577,16 +612,16 @@ class IndexAction extends CommonAction{
 	/*微信JS-SDK*/
     public function js_sdk(){
         Vendor('Weixin.jssdk');
-        $jssdk = new JSSDK('wxacf21161e3c578f1','a9edccfb3018342657334dabd8873357');
+        $jssdk = new JSSDK('wxe4c46a9c9316c0db','ae4b1fab3d780fbb3df5f760d576cb7a');
         $signPackage = $jssdk->GetSignPackage();
-        $ip_list = $jssdk->get_ip_list();
+        // $ip_list = $jssdk->get_ip_list();
         // $access_token = $jssdk->getAccessToken();
         // return $signPackage;
         // return $ip_list;
         $result = array(
         	'signPackage' 	=> 	$signPackage, 
-        	'ip_list'		=>	$ip_list,
-        	'access_token'	=>	$access_token
+        	// 'ip_list'		=>	[],
+        	// 'access_token'	=>	$access_token
         	);
         return $result;
 //        $this->assign('jsskd',$signPackage);
